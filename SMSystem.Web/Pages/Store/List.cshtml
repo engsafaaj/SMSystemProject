@@ -1,0 +1,15 @@
+﻿@page
+@model SMSystem.Web.Pages.Store.ListModel
+@{
+}
+
+@{
+    foreach (var Store in Model.ListStores)
+    {
+        <table>
+            <tr>Id: @Store.Id</tr>
+            <tr>Name: @Store.Name</tr>
+            <tr>Description: @Store.Description</tr>
+        </table>
+    }
+}

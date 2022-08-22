@@ -12,17 +12,21 @@ namespace SMSystem.Gui.StoresGui
     public partial class StoreUserControl : UserControl
     {
         // Fields
-        private IDataHelper<Stores> _dataHelper;
+        private readonly IDataHelper<Stores> _dataHelper;
         private List<Stores> localData;
-        private LoadingUser loading;
+        private readonly LoadingUser loading;
         private int RowId;
+        private static StoreUserControl _storeUser;
+        private List<int> IdList = new List<int>();
+        private Label labelEmptyData;
 
         // Constructores
-        public StoreUserControl()
+        protected StoreUserControl()
         {
             InitializeComponent();
-            loading = new LoadingUser();
+            labelEmptyData = ComponentsObject.Instance().LabelEmptyData();
             _dataHelper = (IDataHelper<Stores>)ContainerConfig.ObjectType("Store");
+            loading = LoadingUser.Instance();
             LoadData();
         }
 
@@ -37,7 +41,6 @@ namespace SMSystem.Gui.StoresGui
             if (dataGridView.RowCount > 0)
             {
                 RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[0].Value);
-
                 StoreAddForm storeAdd = new StoreAddForm(RowId, this);
                 storeAdd.Show();
             }
@@ -53,15 +56,20 @@ namespace SMSystem.Gui.StoresGui
             {
                 if (dataGridView.RowCount > 0)
                 {
-                    RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[0].Value);
+                    SetIDSelcted();
                     var result = MessageCollection.DeleteActtion();
                     if (result == true)
                     {
                         loading.Show();
                         if (await Task.Run(() => _dataHelper.IsDbConnect()))
                         {
-                            await Task.Run(() => _dataHelper.Delete(RowId));
+                            for (int i = 0; i < IdList.Count; i++)
+                            {
+                                RowId = IdList[i];
+                                await Task.Run(() => _dataHelper.Delete(RowId));
+                            }
                             LoadData();
+                            MessageCollection.ShowDeletNotification();
                         }
                         else
                         {
@@ -89,17 +97,29 @@ namespace SMSystem.Gui.StoresGui
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            LoadDataForSearch();
 
         }
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
         }
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadDataForSearch();
+        }
+        private void dataGridView_DoubleClick(object sender, EventArgs e)
+        {
+            buttonEdit_Click(sender, e);
+        }
         #endregion
 
+
         // Methods
+        #region Methods
         public async void LoadData()
         {
+
             loading.Show();
             // Check if connection is available
             if (await Task.Run(() => _dataHelper.IsDbConnect()))
@@ -119,30 +139,52 @@ namespace SMSystem.Gui.StoresGui
                 MessageCollection.ShowServerMessage();
             }
             loading.Hide();
+
+            // Show Empty Label Data
+            ShowLabelIfEmptyData();
         }
 
         public async void LoadDataForSearch()
         {
-            loading.Show();
-            var searchItem = textBoxSearch.Text;
-            // Check if connection is available
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (textBoxSearch.Text == string.Empty)
             {
-                // Loading Data
-                await Task.Run(() =>
-                {
-                    localData = _dataHelper.Search(searchItem);
-                });
-                // Set Data to view
-                dataGridView.DataSource = localData;
-                localData = null;
-                SetDataGridViewColumns();
+                LoadData();
             }
             else
             {
-                MessageCollection.ShowServerMessage();
+                loading.Show();
+                var searchItem = textBoxSearch.Text;
+                // Check if connection is available
+                if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                {
+                    // Loading Data
+                    await Task.Run(() =>
+                    {
+                        localData = _dataHelper.Search(searchItem);
+                    });
+                    // Set Data to view
+                    dataGridView.DataSource = localData;
+                    localData = null;
+                    SetDataGridViewColumns();
+                }
+                else
+                {
+                    MessageCollection.ShowServerMessage();
+                }
+                loading.Hide();
             }
-            loading.Hide();
+            // Show Empty Label Data
+            ShowLabelIfEmptyData();
+
+        }
+
+        // Get a List of Id for selcted rows
+        private void SetIDSelcted()
+        {
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                IdList.Add(Convert.ToInt32(row.Cells[0].Value));
+            }
         }
         private void SetDataGridViewColumns()
         {
@@ -153,6 +195,25 @@ namespace SMSystem.Gui.StoresGui
             // Hide Columns
         }
 
+        // Singleton Instance
+        public static UserControl Instance()
+        {
+            return _storeUser ?? (new StoreUserControl());
+        }
+        //Add and Show Empty Label 
+        private void ShowLabelIfEmptyData()
+        {
+            dataGridView.Controls.Add(labelEmptyData);
+            if (dataGridView.Rows.Count > 0)
+            {
+                labelEmptyData.Visible = false;
+            }
+            else
+            {
+                labelEmptyData.Visible = true;
+            }
+        }
+        #endregion
 
     }
 }

@@ -29,15 +29,14 @@ namespace SMSystem.Gui.StoresGui
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoreAddForm));
             this.flowLayoutPanelNavBar = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxDescriptions = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanelNavBar.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +56,7 @@ namespace SMSystem.Gui.StoresGui
             // 
             // buttonSave
             // 
-            this.buttonSave.Image = ((System.Drawing.Image)(resources.GetObject("buttonSave.Image")));
+            this.buttonSave.Image = global::SMSystem.Properties.Resources.save_32px;
             this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSave.Location = new System.Drawing.Point(471, 11);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -81,6 +80,17 @@ namespace SMSystem.Gui.StoresGui
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات المخزن ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(423, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 37);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "*";
             // 
             // textBoxName
             // 
@@ -115,17 +125,6 @@ namespace SMSystem.Gui.StoresGui
             this.textBoxDescriptions.Size = new System.Drawing.Size(389, 179);
             this.textBoxDescriptions.TabIndex = 5;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(423, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 37);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "*";
-            // 
             // StoreAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 37F);
@@ -134,6 +133,7 @@ namespace SMSystem.Gui.StoresGui
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.flowLayoutPanelNavBar);
             this.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

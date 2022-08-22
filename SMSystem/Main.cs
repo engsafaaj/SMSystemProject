@@ -29,19 +29,19 @@ namespace SMSystem
         private void Main_Load(object sender, EventArgs e)
         {
             // Load Home Page
-            mainClass.LoadPage(new HomeUserControl());
+            mainClass.LoadPage(HomeUserControl.Instance());
         }
 
         private void buttonhome_Click(object sender, EventArgs e)
         {
             // Load Home Page
-            mainClass.LoadPage(new HomeUserControl());
+            mainClass.LoadPage(HomeUserControl.Instance());
         }
 
         private void buttonStore_Click(object sender, EventArgs e)
         {
             // Load Store Page
-            mainClass.LoadPage(new StoreUserControl());
+            mainClass.LoadPage(StoreUserControl.Instance());
         }
     }
 }

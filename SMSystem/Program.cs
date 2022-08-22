@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using SMSystem.Code;
 using SMSystem.Data;
 using SMSystem.Data.EF;
@@ -14,15 +15,16 @@ namespace SMSystem
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+
         [STAThread]
         static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
-            DependencyInjection dependency = new DependencyInjection();
-            ConfigDictionary.keyValuePairs.Add("ConString", Properties.Settings.Default.SQLServerConString);
             Application.SetCompatibleTextRenderingDefault(false);
+            Startup getStarted=new Startup();
             Application.Run(new Main());
         }
+       
     }
 }

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>99046d28-20fa-490f-80b8-250c94c2bd1e</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMSystem.Core\SMSystem.Core.csproj" />
+    <ProjectReference Include="..\SMSystem.Data\SMSystem.Data.csproj" />
+  </ItemGroup>
+
+</Project>

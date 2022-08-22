@@ -7,9 +7,9 @@ using System.Text;
 
 namespace SMSystem.Code
 {
-   public class DependencyInjection
+    public class DependencyInjection
     {
-        
+
         // Construcotores
         public DependencyInjection()
         {

@@ -30,7 +30,6 @@ namespace SMSystem.Gui.OtherGui
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifictionUser));
             this.timerhide = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelNotifictionCatption = new System.Windows.Forms.Label();
@@ -46,13 +45,14 @@ namespace SMSystem.Gui.OtherGui
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::SMSystem.Properties.Resources.Notification_128px;
             this.pictureBox1.Location = new System.Drawing.Point(354, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(87, 87);
+            this.pictureBox1.Size = new System.Drawing.Size(87, 60);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // labelNotifictionCatption
             // 
@@ -61,17 +61,18 @@ namespace SMSystem.Gui.OtherGui
             this.labelNotifictionCatption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.labelNotifictionCatption.Location = new System.Drawing.Point(0, 0);
             this.labelNotifictionCatption.Name = "labelNotifictionCatption";
-            this.labelNotifictionCatption.Size = new System.Drawing.Size(354, 87);
+            this.labelNotifictionCatption.Size = new System.Drawing.Size(354, 60);
             this.labelNotifictionCatption.TabIndex = 1;
             this.labelNotifictionCatption.Text = "تمت عملية الاضافة بنجاح";
             this.labelNotifictionCatption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNotifictionCatption.Click += new System.EventHandler(this.labelNotifictionCatption_Click);
             // 
             // NotifictionUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(441, 87);
+            this.ClientSize = new System.Drawing.Size(441, 60);
             this.Controls.Add(this.labelNotifictionCatption);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

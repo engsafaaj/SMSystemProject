@@ -102,7 +102,11 @@ namespace SMSystem.Data
 
         public List<Stores> Search(string SearchItem)
         {
-            throw new NotImplementedException();
+            db = new DBContext();
+            return db.Stores.Where(x => x.Name.Contains(SearchItem)
+            || x.Description.Contains(SearchItem)
+            || x.Id.ToString() == SearchItem)
+                .ToList();
         }
     }
 }

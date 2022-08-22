@@ -4,11 +4,6 @@ using SMSystem.Data;
 using SMSystem.Gui.OtherGui;
 using SMSystem.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,12 +14,10 @@ namespace SMSystem.Gui.StoresGui
         // Fileds
         private readonly int id;
         private readonly StoreUserControl storeUserControl;
-        private LoadingUser loading;
+        private readonly LoadingUser loading;
         private IDataHelper<Stores> _dataHelper;
         private Stores stores;
         private int ResultAddOrEdit;
-        private NotifictionUser notifictionUser;
-
         // Constructores
         public StoreAddForm(int Id, StoreUserControl storeUserControl)
         {
@@ -32,9 +25,9 @@ namespace SMSystem.Gui.StoresGui
             // Set Property Instance
             id = Id;
             this.storeUserControl = storeUserControl;
-            loading = new LoadingUser();
+            loading = LoadingUser.Instance();
             _dataHelper = (IDataHelper<Stores>)ContainerConfig.ObjectType("Store");
-            // Set Data to Filed for Edit void
+            // Set DataFileds for Edit void
             if (id > 0)
             {
                 SetDataToFileds();
@@ -108,22 +101,21 @@ namespace SMSystem.Gui.StoresGui
 
         private void ClearFileds()
         {
-            textBoxName.Text = textBoxDescriptions.Text = "";
+            textBoxName.Text = textBoxDescriptions.Text = string.Empty;
         }
 
         private async void SetDataToFileds()
         {
             if (await Task.Run(() => _dataHelper.IsDbConnect()))
             {
-                stores = _dataHelper.Find(id);
+                stores = await Task.Run(() => _dataHelper.Find(id));
                 textBoxName.Text = stores.Name;
                 textBoxDescriptions.Text = stores.Description;
             }
             else
             {
-                MessageBox.Show(Resources.ServerConnectionCaption,
-                Resources.ServerConnectionText, MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+                MessageCollection.ShowServerMessage();
+
             }
             stores = null;
         }

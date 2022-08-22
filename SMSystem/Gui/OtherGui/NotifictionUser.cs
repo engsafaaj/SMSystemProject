@@ -21,5 +21,15 @@ namespace SMSystem.Gui.OtherGui
         {
             Close();
         }
+
+        private void labelNotifictionCatption_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
