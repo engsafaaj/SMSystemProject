@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SMSystem.Core;
 
 namespace SMSystem.Data.EF
 {
     public class DBContext : DbContext
     {
-        
+
         // Constructores
         public DBContext()
         {
@@ -18,9 +14,15 @@ namespace SMSystem.Data.EF
         //Methods -- Override
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigDictionary.keyValuePairs["ConString"]);
+            var DevelopmentConString = @"Server=.\SQLEXPRESS;DataBase=DBSMSystem;Integrated Security=True";
+            //optionsBuilder.UseSqlServer(ConfigDictionary.keyValuePairs["ConString"]);
+            optionsBuilder.UseSqlServer(DevelopmentConString);
         }
         // Tables
         public DbSet<Stores> Stores { get; set; }
+        public DbSet<Materails> Materails { get; set; }
+        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Suppliers> Suppliers { get; set; }
+        public DbSet<Income> Income { get; set; }
     }
 }

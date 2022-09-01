@@ -2,7 +2,6 @@
 using SMSystem.Core;
 using SMSystem.Data;
 using SMSystem.Gui.OtherGui;
-using SMSystem.Properties;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,7 +37,7 @@ namespace SMSystem.Gui.StoresGui
         private void buttonSave_Click(object sender, EventArgs e)
         {
             // check requirments of fileds
-            if (textBoxName.Text == string.Empty)
+            if (IsRequiredFiledEmpty())
             {
                 MessageCollection.ShowEmptyFields();
             }
@@ -135,6 +134,17 @@ namespace SMSystem.Gui.StoresGui
                 Name = textBoxName.Text,
                 Description = textBoxDescriptions.Text
             };
+        }
+        private bool IsRequiredFiledEmpty()
+        {
+            if (textBoxName.Text == string.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
 

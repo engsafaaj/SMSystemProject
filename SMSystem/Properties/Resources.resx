@@ -148,6 +148,12 @@
   <data name="department_store_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\department_store_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DuplicateDataCaption" xml:space="preserve">
+    <value>بعض البيانات لا يجب ان تتكرر مثل المعرف. تأكد من تغييرة ثم اعد المحاولة</value>
+  </data>
+  <data name="DuplicateDataText" xml:space="preserve">
+    <value>تكرار البيانات</value>
+  </data>
   <data name="EditNotificationText" xml:space="preserve">
     <value>تمت عملية التعديل بنجاح</value>
   </data>
@@ -193,6 +199,12 @@
   <data name="icons8_select_users_32px_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_select_users_32px_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="InvalidInputCaption" xml:space="preserve">
+    <value>يرجى ادخال قيمة صحيحة</value>
+  </data>
+  <data name="InvalidIputText" xml:space="preserve">
+    <value>خطأ ادخال</value>
+  </data>
   <data name="Loading_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Loading_icon.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -222,6 +234,12 @@
   </data>
   <data name="settings_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShowRowsCaption" xml:space="preserve">
+    <value>لحساسية اجراء الحذف لابد لك ان تقوم بأختيار كامل السطر, واذا اردت حذف كامل البيانات يمكنك الضغط CTRL+A</value>
+  </data>
+  <data name="ShowRowText" xml:space="preserve">
+    <value>تأكد من اختيار كامل السطر لحذفة</value>
   </data>
   <data name="sorting_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sorting_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

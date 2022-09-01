@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SMSystem.Code
 {
@@ -8,15 +6,15 @@ namespace SMSystem.Code
     {
         // Fileds
         private static Dictionary<string, object> configuration = new Dictionary<string, object>();
-      
+
         // Methods
         public static void Register(string Name, object Object)
         {
-            configuration.Add(Name,Object);
+            configuration.Add(Name, Object);
         }
         public static object ObjectType(string Name)
         {
             return configuration[Name];
-        }    
+        }
     }
 }

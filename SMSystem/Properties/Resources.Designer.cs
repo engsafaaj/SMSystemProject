@@ -157,6 +157,24 @@ namespace SMSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to بعض البيانات لا يجب ان تتكرر مثل المعرف. تأكد من تغييرة ثم اعد المحاولة.
+        /// </summary>
+        internal static string DuplicateDataCaption {
+            get {
+                return ResourceManager.GetString("DuplicateDataCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تكرار البيانات.
+        /// </summary>
+        internal static string DuplicateDataText {
+            get {
+                return ResourceManager.GetString("DuplicateDataText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap edit_32px {
@@ -300,6 +318,24 @@ namespace SMSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to يرجى ادخال قيمة صحيحة.
+        /// </summary>
+        internal static string InvalidInputCaption {
+            get {
+                return ResourceManager.GetString("InvalidInputCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خطأ ادخال.
+        /// </summary>
+        internal static string InvalidIputText {
+            get {
+                return ResourceManager.GetString("InvalidIputText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Loading_icon {
@@ -394,6 +430,24 @@ namespace SMSystem.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لحساسية اجراء الحذف لابد لك ان تقوم بأختيار كامل السطر, واذا اردت حذف كامل البيانات يمكنك الضغط CTRL+A.
+        /// </summary>
+        internal static string ShowRowsCaption {
+            get {
+                return ResourceManager.GetString("ShowRowsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تأكد من اختيار كامل السطر لحذفة.
+        /// </summary>
+        internal static string ShowRowText {
+            get {
+                return ResourceManager.GetString("ShowRowText", resourceCulture);
             }
         }
         

@@ -32,7 +32,7 @@ namespace SMSystem
             this.flowLayoutPanelNavBar = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonhome = new System.Windows.Forms.Button();
             this.buttonStore = new System.Windows.Forms.Button();
-            this.buttonCategory = new System.Windows.Forms.Button();
+            this.buttonMaterails = new System.Windows.Forms.Button();
             this.buttonIncome = new System.Windows.Forms.Button();
             this.buttonOutCome = new System.Windows.Forms.Button();
             this.buttonDamage = new System.Windows.Forms.Button();
@@ -53,7 +53,7 @@ namespace SMSystem
             this.flowLayoutPanelNavBar.BackColor = System.Drawing.SystemColors.Control;
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonhome);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonStore);
-            this.flowLayoutPanelNavBar.Controls.Add(this.buttonCategory);
+            this.flowLayoutPanelNavBar.Controls.Add(this.buttonMaterails);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonIncome);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonOutCome);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonDamage);
@@ -97,17 +97,18 @@ namespace SMSystem
             this.buttonStore.UseVisualStyleBackColor = true;
             this.buttonStore.Click += new System.EventHandler(this.buttonStore_Click);
             // 
-            // buttonCategory
+            // buttonMaterails
             // 
-            this.buttonCategory.Image = global::SMSystem.Properties.Resources.open_box_32px;
-            this.buttonCategory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonCategory.Location = new System.Drawing.Point(601, 6);
-            this.buttonCategory.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonCategory.Name = "buttonCategory";
-            this.buttonCategory.Size = new System.Drawing.Size(140, 60);
-            this.buttonCategory.TabIndex = 2;
-            this.buttonCategory.Text = "  المواد";
-            this.buttonCategory.UseVisualStyleBackColor = true;
+            this.buttonMaterails.Image = global::SMSystem.Properties.Resources.open_box_32px;
+            this.buttonMaterails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonMaterails.Location = new System.Drawing.Point(601, 6);
+            this.buttonMaterails.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonMaterails.Name = "buttonMaterails";
+            this.buttonMaterails.Size = new System.Drawing.Size(140, 60);
+            this.buttonMaterails.TabIndex = 2;
+            this.buttonMaterails.Text = "  المواد";
+            this.buttonMaterails.UseVisualStyleBackColor = true;
+            this.buttonMaterails.Click += new System.EventHandler(this.buttonMaterails_Click);
             // 
             // buttonIncome
             // 
@@ -120,6 +121,7 @@ namespace SMSystem
             this.buttonIncome.TabIndex = 9;
             this.buttonIncome.Text = "  المدخلات";
             this.buttonIncome.UseVisualStyleBackColor = true;
+            this.buttonIncome.Click += new System.EventHandler(this.buttonIncome_Click);
             // 
             // buttonOutCome
             // 
@@ -156,6 +158,7 @@ namespace SMSystem
             this.buttonSuppliers.TabIndex = 3;
             this.buttonSuppliers.Text = "  الموردين";
             this.buttonSuppliers.UseVisualStyleBackColor = true;
+            this.buttonSuppliers.Click += new System.EventHandler(this.buttonSuppliers_Click);
             // 
             // buttonCustomers
             // 
@@ -168,6 +171,7 @@ namespace SMSystem
             this.buttonCustomers.TabIndex = 7;
             this.buttonCustomers.Text = "  العملاء";
             this.buttonCustomers.UseVisualStyleBackColor = true;
+            this.buttonCustomers.Click += new System.EventHandler(this.buttonCustomers_Click);
             // 
             // buttonReports
             // 
@@ -267,7 +271,7 @@ namespace SMSystem
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelNavBar;
         private System.Windows.Forms.Button buttonhome;
         private System.Windows.Forms.Button buttonStore;
-        private System.Windows.Forms.Button buttonCategory;
+        private System.Windows.Forms.Button buttonMaterails;
         private System.Windows.Forms.Button buttonSuppliers;
         private System.Windows.Forms.Button buttonAnalysis;
         private System.Windows.Forms.Button buttonHelp;

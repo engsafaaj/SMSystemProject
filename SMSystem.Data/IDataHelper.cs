@@ -1,12 +1,10 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 namespace SMSystem.Data
 {
     public interface IDataHelper<Table>
     {
         List<Table> GetData();
         List<Table> Search(string SearchItem);
-        List<string> GetColumnsList();
         bool IsDbConnect();
         Table Find(int id);
         int Add(Table table);

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SMSystem.Code;
+﻿using SMSystem.Code;
+using SMSystem.Gui.CustomersGui;
 using SMSystem.Gui.Home;
+using SMSystem.Gui.IncomeGui;
+using SMSystem.Gui.MaterailsGui;
 using SMSystem.Gui.StoresGui;
+using SMSystem.Gui.SuppliersGui;
+using System;
+using System.Windows.Forms;
 
 namespace SMSystem
 {
@@ -42,6 +39,30 @@ namespace SMSystem
         {
             // Load Store Page
             mainClass.LoadPage(StoreUserControl.Instance());
+        }
+
+        private void buttonMaterails_Click(object sender, EventArgs e)
+        {
+            // Load Materails Page
+            mainClass.LoadPage(MaterailsUserControl.Instance());
+        }
+
+        private void buttonCustomers_Click(object sender, EventArgs e)
+        {
+            // Load Customers Page
+            mainClass.LoadPage(CustomerUserControl.Instance());
+        }
+
+        private void buttonSuppliers_Click(object sender, EventArgs e)
+        {
+            // Load Suupliers Page
+            mainClass.LoadPage(SupplierUserControl.Instance());
+        }
+
+        private void buttonIncome_Click(object sender, EventArgs e)
+        {
+            // Load Income Materails Page
+            mainClass.LoadPage(IncomeUserControl.Instance());
         }
     }
 }

@@ -69,11 +69,11 @@ namespace SMSystem.Gui.StoresGui
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxDescriptions);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBoxName);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBoxDescriptions);
             this.groupBox1.Location = new System.Drawing.Point(14, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(569, 306);

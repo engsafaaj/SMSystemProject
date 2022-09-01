@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastReport.Compat" Version="2022.2.0" />
-    <PackageReference Include="FastReport.OpenSource" Version="2022.2.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,9 +19,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Gui\IncomeGui\IncomeAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Gui\IncomeGui\IncomeUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Gui\SuppliersGui\SupplierAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Gui\SuppliersGui\SupplierUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Gui\MaterailsGui\MaterailsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Gui\MaterailsGui\MaterailsAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Gui\OtherGui\NotifictionUser.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Gui\CustomersGui\CustomerAddForm.cs" />
+    <Compile Update="Gui\CustomersGui\CustomerUserControl.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -48,15 +66,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Gui\CategoryGui\" />
-    <Folder Include="Gui\MaterailsGui\" />
-    <Folder Include="Gui\AnalysisGui\" />
-    <Folder Include="Gui\HelpGui\" />
-    <Folder Include="Gui\AboutGui\" />
-    <Folder Include="Gui\SettingsGui\" />
   </ItemGroup>
 
 </Project>

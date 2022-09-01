@@ -1,8 +1,5 @@
 ﻿using SMSystem.Gui.OtherGui;
 using SMSystem.Properties;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SMSystem.Code
@@ -46,6 +43,24 @@ namespace SMSystem.Code
         {
             MessageBox.Show(Resources.FiledsEmptyCaption,
                     Resources.FiledsEmptyText, MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+        }
+        public static void ShowSlectRowsNotification()
+        {
+            MessageBox.Show(Resources.ShowRowsCaption,
+                    Resources.ShowRowText, MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+        }
+        public static void ShowInvalidValue()
+        {
+            MessageBox.Show(Resources.InvalidInputCaption,
+                    Resources.InvalidIputText, MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+        }
+        public static void ShowDuplicateData()
+        {
+            MessageBox.Show(Resources.DuplicateDataCaption,
+                    Resources.DuplicateDataText, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
         }
         #endregion

@@ -1,9 +1,11 @@
-﻿using SMSystem.Code;
+﻿
+using SMSystem.Code;
 using SMSystem.Core;
 using SMSystem.Data;
 using SMSystem.Gui.OtherGui;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,15 +15,15 @@ namespace SMSystem.Gui.StoresGui
     {
         // Fields
         private readonly IDataHelper<Stores> _dataHelper;
-        private List<Stores> localData;
         private readonly LoadingUser loading;
         private int RowId;
         private static StoreUserControl _storeUser;
         private List<int> IdList = new List<int>();
         private Label labelEmptyData;
+        private string searchItem;
 
         // Constructores
-        protected StoreUserControl()
+        public StoreUserControl()
         {
             InitializeComponent();
             labelEmptyData = ComponentsObject.Instance().LabelEmptyData();
@@ -63,13 +65,22 @@ namespace SMSystem.Gui.StoresGui
                         loading.Show();
                         if (await Task.Run(() => _dataHelper.IsDbConnect()))
                         {
-                            for (int i = 0; i < IdList.Count; i++)
+                            if (IdList.Count > 0)
                             {
-                                RowId = IdList[i];
-                                await Task.Run(() => _dataHelper.Delete(RowId));
+                                for (int i = 0; i < IdList.Count; i++)
+                                {
+                                    RowId = IdList[i];
+                                    await Task.Run(() => _dataHelper.Delete(RowId));
+                                }
+                                LoadData();
+                                MessageCollection.ShowDeletNotification();
                             }
-                            LoadData();
-                            MessageCollection.ShowDeletNotification();
+                            else
+                            {
+                                MessageCollection.ShowSlectRowsNotification();
+
+                            }
+
                         }
                         else
                         {
@@ -92,6 +103,7 @@ namespace SMSystem.Gui.StoresGui
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
+
 
         }
 
@@ -119,19 +131,13 @@ namespace SMSystem.Gui.StoresGui
         #region Methods
         public async void LoadData()
         {
-
             loading.Show();
             // Check if connection is available
             if (await Task.Run(() => _dataHelper.IsDbConnect()))
             {
                 // Loading Data
-                await Task.Run(() =>
-                {
-                    localData = _dataHelper.GetData();
-                });
-                // Set Data to view
-                dataGridView.DataSource = localData;
-                localData = null;
+                dataGridView.DataSource = await Task.Run(() => _dataHelper.GetData());
+
                 SetDataGridViewColumns();
             }
             else
@@ -153,18 +159,12 @@ namespace SMSystem.Gui.StoresGui
             else
             {
                 loading.Show();
-                var searchItem = textBoxSearch.Text;
+                searchItem = textBoxSearch.Text;
                 // Check if connection is available
                 if (await Task.Run(() => _dataHelper.IsDbConnect()))
                 {
                     // Loading Data
-                    await Task.Run(() =>
-                    {
-                        localData = _dataHelper.Search(searchItem);
-                    });
-                    // Set Data to view
-                    dataGridView.DataSource = localData;
-                    localData = null;
+                    dataGridView.DataSource = await Task.Run(() => _dataHelper.Search(searchItem));
                     SetDataGridViewColumns();
                 }
                 else
@@ -183,15 +183,20 @@ namespace SMSystem.Gui.StoresGui
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
-                IdList.Add(Convert.ToInt32(row.Cells[0].Value));
+                if (row.Selected) IdList.Add(Convert.ToInt32(row.Cells[0].Value));
             }
         }
         private void SetDataGridViewColumns()
         {
-            // Set Title
-            dataGridView.Columns[0].HeaderCell.Value = "المعرف";
-            dataGridView.Columns[1].HeaderCell.Value = "اسم المخزن";
-            dataGridView.Columns[2].HeaderCell.Value = "الوصف";
+            try
+            {
+                // Set Title
+                dataGridView.Columns[0].HeaderCell.Value = "المعرف";
+                dataGridView.Columns[1].HeaderCell.Value = "اسم المخزن";
+                dataGridView.Columns[2].HeaderCell.Value = "الوصف";
+            }
+            catch { }
+            
             // Hide Columns
         }
 

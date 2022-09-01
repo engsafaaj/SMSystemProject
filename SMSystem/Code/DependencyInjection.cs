@@ -1,9 +1,4 @@
-﻿using SMSystem.Core;
-using SMSystem.Data;
-using SMSystem.Gui.StoresGui;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SMSystem.Data;
 
 namespace SMSystem.Code
 {
@@ -15,6 +10,10 @@ namespace SMSystem.Code
         {
             // Inject the objets
             ContainerConfig.Register("Store", new StoreEntity());
+            ContainerConfig.Register("Materails", new MaterailsEntity());
+            ContainerConfig.Register("Customer", new CustomersEntity());
+            ContainerConfig.Register("Supplier", new SuppliersEntity());
+            ContainerConfig.Register("Income", new IncomeEntity());
         }
     }
 }
