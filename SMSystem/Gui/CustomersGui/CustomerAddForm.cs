@@ -105,7 +105,7 @@ namespace SMSystem.Gui.CustomersGui
 
         private async void SetDataToFileds()
         {
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 customer = await Task.Run(() => _dataHelper.Find(id));
                 textBoxName.Text = customer.Name;

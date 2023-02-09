@@ -63,14 +63,14 @@ namespace SMSystem.Gui.StoresGui
                     if (result == true)
                     {
                         loading.Show();
-                        if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                        if (_dataHelper.IsDbConnect())
                         {
                             if (IdList.Count > 0)
                             {
                                 for (int i = 0; i < IdList.Count; i++)
                                 {
                                     RowId = IdList[i];
-                                    await Task.Run(() => _dataHelper.Delete(RowId));
+                                   _dataHelper.Delete(RowId);
                                 }
                                 LoadData();
                                 MessageCollection.ShowDeletNotification();
@@ -133,7 +133,7 @@ namespace SMSystem.Gui.StoresGui
         {
             loading.Show();
             // Check if connection is available
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if ( _dataHelper.IsDbConnect())
             {
                 // Loading Data
                 dataGridView.DataSource = await Task.Run(() => _dataHelper.GetData());
@@ -161,7 +161,7 @@ namespace SMSystem.Gui.StoresGui
                 loading.Show();
                 searchItem = textBoxSearch.Text;
                 // Check if connection is available
-                if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                if (_dataHelper.IsDbConnect())
                 {
                     // Loading Data
                     dataGridView.DataSource = await Task.Run(() => _dataHelper.Search(searchItem));

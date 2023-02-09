@@ -19,6 +19,68 @@ namespace SMSystem.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("SMSystem.Core.ConscienceCard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DepName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DepTransportName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DepTransportReciverDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DepTransportReciverName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DepTransportReciverSign")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaterialName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OutComeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OutComeNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReciverDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReciverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReciverSign")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("customersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("customersId");
+
+                    b.ToTable("ConscienceCard");
+                });
+
             modelBuilder.Entity("SMSystem.Core.Customers", b =>
                 {
                     b.Property<int>("Id")
@@ -47,6 +109,77 @@ namespace SMSystem.Data.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("SMSystem.Core.Damage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InterNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ReciptNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RectipDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("RectipImg")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("RectipName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Store")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Supplier")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Damage");
+                });
+
             modelBuilder.Entity("SMSystem.Core.Income", b =>
                 {
                     b.Property<int>("Id")
@@ -63,6 +196,12 @@ namespace SMSystem.Data.Migrations
 
                     b.Property<DateTime>("ExpDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("IncomeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InterNo")
+                        .HasColumnType("int");
 
                     b.Property<int>("MaterailId")
                         .HasColumnType("int");
@@ -84,8 +223,15 @@ namespace SMSystem.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("RectipDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte[]>("RectipImg")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("RectipName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -102,6 +248,10 @@ namespace SMSystem.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -126,6 +276,12 @@ namespace SMSystem.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("ConscinceCard")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Damge")
+                        .HasColumnType("float");
+
                     b.Property<string>("Descritpion")
                         .HasColumnType("nvarchar(max)");
 
@@ -137,6 +293,9 @@ namespace SMSystem.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("OutCome")
+                        .HasColumnType("float");
+
+                    b.Property<double>("OutConscience")
                         .HasColumnType("float");
 
                     b.Property<double>("Price")
@@ -167,6 +326,142 @@ namespace SMSystem.Data.Migrations
                     b.HasIndex("StoresId");
 
                     b.ToTable("Materails");
+                });
+
+            modelBuilder.Entity("SMSystem.Core.OutCome", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Customer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaterialNo")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OutDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OuterNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OutCome");
+                });
+
+            modelBuilder.Entity("SMSystem.Core.OutComeMaterail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaterialName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("outComeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("outComeId");
+
+                    b.ToTable("outComeMaterail");
+                });
+
+            modelBuilder.Entity("SMSystem.Core.OutOfConscinesMaterials", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InterNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ReciptNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RectipDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("RectipImg")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("RectipName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Store")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Supplier")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OutOfConscinesMaterials");
                 });
 
             modelBuilder.Entity("SMSystem.Core.Stores", b =>
@@ -216,6 +511,43 @@ namespace SMSystem.Data.Migrations
                     b.ToTable("Suppliers");
                 });
 
+            modelBuilder.Entity("SMSystem.Core.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("SMSystem.Core.ConscienceCard", b =>
+                {
+                    b.HasOne("SMSystem.Core.Customers", "customers")
+                        .WithMany("conscienceCards")
+                        .HasForeignKey("customersId");
+
+                    b.Navigation("customers");
+                });
+
             modelBuilder.Entity("SMSystem.Core.Income", b =>
                 {
                     b.HasOne("SMSystem.Core.Materails", "Materails")
@@ -234,9 +566,28 @@ namespace SMSystem.Data.Migrations
                     b.Navigation("Stores");
                 });
 
+            modelBuilder.Entity("SMSystem.Core.OutComeMaterail", b =>
+                {
+                    b.HasOne("SMSystem.Core.OutCome", "outCome")
+                        .WithMany("OutComeMaterails")
+                        .HasForeignKey("outComeId");
+
+                    b.Navigation("outCome");
+                });
+
+            modelBuilder.Entity("SMSystem.Core.Customers", b =>
+                {
+                    b.Navigation("conscienceCards");
+                });
+
             modelBuilder.Entity("SMSystem.Core.Materails", b =>
                 {
                     b.Navigation("Income");
+                });
+
+            modelBuilder.Entity("SMSystem.Core.OutCome", b =>
+                {
+                    b.Navigation("OutComeMaterails");
                 });
 
             modelBuilder.Entity("SMSystem.Core.Stores", b =>

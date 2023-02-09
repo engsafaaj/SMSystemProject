@@ -1,4 +1,5 @@
-﻿using SMSystem.Code;
+﻿using FastMember;
+using SMSystem.Code;
 using SMSystem.Core;
 using SMSystem.Data;
 using SMSystem.Gui.OtherGui;
@@ -16,14 +17,22 @@ namespace SMSystem.Gui.IncomeGui
         // Fields
         private readonly IDataHelper<Income> _dataHelper;
         private readonly IDataHelper<Materails> _dataHelperForMaterial;
+        private readonly IDataHelper<Damage> _dataHelperForDamag;
+        private readonly IDataHelper<OutOfConscinesMaterials> _dataHelperForOutOfConscince;
         private readonly LoadingUser loading;
         private int MaterialId;
         private static IncomeUserControl _incomelsUser;
         private List<int> IdList = new List<int>();
         private Label labelEmptyData;
         private string searchItem;
+        private DataTable dataTable;
+        private Damage damage;
 
         public int RowId { get; private set; }
+        public double Quantity { get; set; }
+
+        private Income income;
+        private Materails material;
 
         // Constructores
         public IncomeUserControl()
@@ -32,6 +41,8 @@ namespace SMSystem.Gui.IncomeGui
             labelEmptyData = ComponentsObject.Instance().LabelEmptyData();
             _dataHelper = (IDataHelper<Income>)ContainerConfig.ObjectType("Income");
             _dataHelperForMaterial = (IDataHelper<Materails>)ContainerConfig.ObjectType("Materails");
+            _dataHelperForDamag = (IDataHelper<Damage>)ContainerConfig.ObjectType("Damage");
+            _dataHelperForOutOfConscince = (IDataHelper<OutOfConscinesMaterials>)ContainerConfig.ObjectType("OutOfConscinesMaterials");
             loading = LoadingUser.Instance();
             LoadData();
         }
@@ -61,25 +72,80 @@ namespace SMSystem.Gui.IncomeGui
                 MessageCollection.ShowEmptyDataMessage();
             }
         }
-        private async void buttonDelete_Click(object sender, EventArgs e)
+        private void buttonDeleteFromMaterials_Click(object sender, EventArgs e)
         {
             try
             {
+                SetIDSelcted();
                 if (dataGridView.RowCount > 0)
                 {
-                    SetIDSelcted();
-                    var result = MessageCollection.DeleteActtion();
+                    var result = MessageCollection.DeleteCompletedData();
                     if (result == true)
                     {
                         loading.Show();
-                        if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                        if (_dataHelper.IsDbConnect())
                         {
                             if (IdList.Count > 0)
                             {
                                 for (int i = 0; i < IdList.Count; i++)
                                 {
                                     RowId = IdList[i];
-                                    await Task.Run(() => _dataHelper.Delete(RowId));
+                                    income = _dataHelper.GetData().Where(x => x.Id == RowId).First();
+                                    material = _dataHelperForMaterial.GetData().Where(x => x.Id == income.MaterailId).First();
+                                    material.Quantity = material.Quantity - income.Quantity;
+                                    material.InCome = material.InCome - income.Quantity;
+                                    material.TotalPrice = material.TotalPrice - income.TotalPrice;
+                                    _dataHelperForMaterial.Edit(material);
+                                    _dataHelper.Delete(RowId);
+                                }
+
+                            }
+                            MessageCollection.ShowDeletNotification();
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageCollection.ShowSlectRowsNotification();
+
+                        }
+                    }
+                    else
+                    {
+                        MessageCollection.ShowServerMessage();
+                    }
+                }
+
+                else
+                {
+                    MessageCollection.ShowEmptyDataMessage();
+
+                }
+            }
+            catch
+            {
+                MessageCollection.ShowServerMessage();
+            }
+            loading.Hide();
+        }
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView.RowCount > 0)
+                {
+                    SetIDSelcted();
+                    var result = MessageCollection.DamageAction();
+                    if (result == true)
+                    {
+                        loading.Show();
+                        if (_dataHelper.IsDbConnect())
+                        {
+                            if (IdList.Count > 0)
+                            {
+                                for (int i = 0; i < IdList.Count; i++)
+                                {
+                                    RowId = IdList[i];
+                                    _dataHelper.Delete(RowId);
                                 }
                                 LoadData();
                                 MessageCollection.ShowDeletNotification();
@@ -92,7 +158,6 @@ namespace SMSystem.Gui.IncomeGui
                         }
                         else
                         {
-                            MessageCollection.ShowServerMessage();
                         }
                     }
                 }
@@ -110,8 +175,14 @@ namespace SMSystem.Gui.IncomeGui
         }
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-
-
+            dataTable = new DataTable();
+            using (var reader = ObjectReader.Create(_dataHelper.GetData()))
+            {
+                dataTable.Load(reader);
+            }
+            RearrangeDataTableColumns(dataTable);
+            PrintDialogForm printDialog = new PrintDialogForm(dataTable);
+            printDialog.Show();
         }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
@@ -130,6 +201,19 @@ namespace SMSystem.Gui.IncomeGui
         {
             buttonEdit_Click(sender, e);
         }
+        private void buttonDamge_Click(object sender, EventArgs e)
+        {
+            var qunatity = Convert.ToDouble(dataGridView.CurrentRow.Cells[5].Value);
+
+            DamgeActionBox box = new DamgeActionBox(this, qunatity);
+            var rs = box.ShowDialog();
+            if (rs == DialogResult.OK)
+            {
+                MoveToDamge(Quantity);
+
+            }
+
+        }
         #endregion
 
         // Methods
@@ -138,8 +222,10 @@ namespace SMSystem.Gui.IncomeGui
         {
 
             loading.Show();
+            // Update Exp Date 
+            UpdateExpDate();
             // Check if connection is available
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 // Loading Data and Set Data
                 dataGridView.DataSource = await Task.Run(() => _dataHelper.GetData()
@@ -170,6 +256,7 @@ namespace SMSystem.Gui.IncomeGui
 
             // Show Empty Label Data
             ShowLabelIfEmptyData();
+
         }
         public async void LoadDataForSearch()
         {
@@ -184,7 +271,7 @@ namespace SMSystem.Gui.IncomeGui
                 loading.Show();
                 searchItem = textBoxSearch.Text;
                 // Check if connection is available
-                if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                if (_dataHelper.IsDbConnect())
                 {
                     // Loading Data
                     dataGridView.DataSource = await Task.Run(() => _dataHelper.Search(searchItem).Select(x => new
@@ -217,7 +304,6 @@ namespace SMSystem.Gui.IncomeGui
             ShowLabelIfEmptyData();
 
         }
-        // Get a List of Id for selcted rows
         private void SetIDSelcted()
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -237,9 +323,9 @@ namespace SMSystem.Gui.IncomeGui
                 dataGridView.Columns[1].HeaderCell.Value = "الاسم";
                 dataGridView.Columns[2].HeaderCell.Value = "اسم المخزن";
                 dataGridView.Columns[3].HeaderCell.Value = "الوحدة";
-                dataGridView.Columns[4].HeaderCell.Value = "السعر";
+                dataGridView.Columns[4].HeaderCell.Value = "السعر" + Properties.Settings.Default.Currency;
                 dataGridView.Columns[5].HeaderCell.Value = "الكمية";
-                dataGridView.Columns[6].HeaderCell.Value = "الاجمالي";
+                dataGridView.Columns[6].HeaderCell.Value = "الاجمالي" + Properties.Settings.Default.Currency;
                 dataGridView.Columns[7].HeaderCell.Value = "المورد";
                 dataGridView.Columns[8].HeaderCell.Value = "رقم الوصل";
                 dataGridView.Columns[9].HeaderCell.Value = "تاريخ الانتهاء";
@@ -252,12 +338,10 @@ namespace SMSystem.Gui.IncomeGui
             }
             catch { }
         }
-        // Singleton Instance
         public static UserControl Instance()
         {
             return _incomelsUser ?? (new IncomeUserControl());
         }
-        //Add and Show Empty Label 
         private void ShowLabelIfEmptyData()
         {
             dataGridView.Controls.Add(labelEmptyData);
@@ -270,69 +354,12 @@ namespace SMSystem.Gui.IncomeGui
                 labelEmptyData.Visible = true;
             }
         }
-
-        #endregion
-
-        private async void buttonDeleteFromMaterials_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dataGridView.RowCount > 0)
-                {
-                    SetIDSelcted();
-                    var result = MessageCollection.DeleteActtion();
-                    if (result == true)
-                    {
-                        loading.Show();
-                        if (await Task.Run(() => _dataHelper.IsDbConnect()))
-                        {
-                            if (IdList.Count > 0)
-                            {
-                                for (int i = 0; i < IdList.Count; i++)
-                                {
-                                    RowId = IdList[i];
-                                    var income = await Task.Run(() => _dataHelper.GetData().Where(x => x.Id == RowId).First());
-                                    var material= await Task.Run(() => _dataHelperForMaterial.GetData().Where(x => x.Id == income.MaterailId).First());
-                                    material.Quantity = material.Quantity - income.Quantity;
-                                    material.InCome = material.InCome - income.Quantity;
-                                    material.TotalPrice = material.TotalPrice - income.TotalPrice;
-                                    await Task.Run(() => _dataHelperForMaterial.Edit(material));
-                                    await Task.Run(() => _dataHelper.Delete(RowId));
-                                }
-                                LoadData();
-                                MessageCollection.ShowDeletNotification();
-                            }
-                            else
-                            {
-                                MessageCollection.ShowSlectRowsNotification();
-
-                            }
-                        }
-                        else
-                        {
-                            MessageCollection.ShowServerMessage();
-                        }
-                    }
-                }
-                else
-                {
-                    MessageCollection.ShowEmptyDataMessage();
-
-                }
-            }
-            catch
-            {
-                MessageCollection.ShowServerMessage();
-            }
-            loading.Hide();
-        }
-
         private void AutoLoadMaterailData(IncomeAddForm incomeAdd)
         {
 
             if (_dataHelper.IsDbConnect())
             {
-               var RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[10].Value);
+                var RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[10].Value);
                 var MaterialId = _dataHelper.GetData().Where(x => x.Id == RowId).Select(x => x.MaterailId).First();
                 if (MaterialId > 0)
                 {
@@ -348,9 +375,260 @@ namespace SMSystem.Gui.IncomeGui
                         incomeAdd.textBoxCurrentQuanttiy.Text = materails.Quantity.ToString();
                         incomeAdd.textBoxUnit.Text = materails.Unit;
                         incomeAdd.textBoxIncome.Text = materails.InCome.ToString();
+                        incomeAdd.dateTimePickerExpData.Value = Convert.ToDateTime(dataGridView.CurrentRow.Cells[9].Value);
                     }
                 }
             }
         }
+        private void UpdateExpDate()
+        {
+            // Get List Icome Table Need To Update
+            var currentData = DateTime.Now.Date;
+            var IcomeNeedToUpdate = _dataHelper.GetData().Where(x => x.State == "متوفر" && x.ExpDate != x.AddedDate
+              && Convert.ToDateTime(x.ExpDate) < currentData).ToList();
+            // Loop into Incom Need To Update
+            foreach (var IncomeTable in IcomeNeedToUpdate)
+            {
+                IncomeTable.State = "منتهي الصلاحية";
+                _dataHelper.Edit(IncomeTable);
+            }
+
+        }
+        private void MoveToDamgeTable()
+        {
+            if (_dataHelper.IsDbConnect())
+            {
+                // Get All info
+                RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[10].Value);
+                Income income = _dataHelper.Find(RowId);
+                // Move it to damge table
+
+            }
+        }
+        private void RearrangeDataTableColumns(DataTable dataTable)
+        {
+            dataTable.Columns["Id"].SetOrdinal(0);
+            dataTable.Columns["Id"].ColumnName = "المعرف";
+            dataTable.Columns["Code"].SetOrdinal(1);
+            dataTable.Columns["Code"].ColumnName = "الكود";
+            dataTable.Columns["Name"].SetOrdinal(2);
+            dataTable.Columns["Name"].ColumnName = "اسم المادة";
+            dataTable.Columns["Store"].SetOrdinal(3);
+            dataTable.Columns["Store"].ColumnName = "المخزن";
+            dataTable.Columns["Unit"].SetOrdinal(4);
+            dataTable.Columns["Unit"].ColumnName = "الوحدة";
+            dataTable.Columns["Quantity"].SetOrdinal(5);
+            dataTable.Columns["Quantity"].ColumnName = "الكمية";
+            dataTable.Columns["Price"].SetOrdinal(6);
+            dataTable.Columns["Price"].ColumnName = "السعر" + Properties.Settings.Default.Currency;
+            dataTable.Columns["TotalPrice"].SetOrdinal(7);
+            dataTable.Columns["TotalPrice"].ColumnName = "الاجمالي" + Properties.Settings.Default.Currency;
+            dataTable.Columns["RectipName"].SetOrdinal(8);
+            dataTable.Columns["RectipName"].ColumnName = "اسم الوصل";
+            dataTable.Columns["ReciptNo"].SetOrdinal(9);
+            dataTable.Columns["ReciptNo"].ColumnName = "رقم الوصل";
+            dataTable.Columns["RectipDate"].SetOrdinal(10);
+            dataTable.Columns["RectipDate"].ColumnName = "تاريخ الوصل";
+            dataTable.Columns["Supplier"].SetOrdinal(11);
+            dataTable.Columns["Supplier"].ColumnName = "المورد";
+            dataTable.Columns["InterNo"].SetOrdinal(12);
+            dataTable.Columns["InterNo"].ColumnName = "رقم مستند الادخال";
+            dataTable.Columns["IncomeDate"].SetOrdinal(13);
+            dataTable.Columns["IncomeDate"].ColumnName = "تاريخ مستند الادخال";
+            dataTable.Columns["State"].SetOrdinal(14);
+            dataTable.Columns["State"].ColumnName = "الحالة";
+            dataTable.Columns["User"].SetOrdinal(15);
+            dataTable.Columns["User"].ColumnName = "المستخدم";
+            dataTable.Columns["AddedDate"].SetOrdinal(16);
+            dataTable.Columns["AddedDate"].ColumnName = "تاريخ الاضافة";
+            dataTable.Columns["ExpDate"].SetOrdinal(17);
+            dataTable.Columns["ExpDate"].ColumnName = "تاريخ الانتهاء";
+
+            // Remove unnesessary columns
+            dataTable.Columns.Remove("MaterailId");
+            dataTable.Columns.Remove("Materails");
+            dataTable.Columns.Remove("RectipImg");
+            // Accept Changes
+            dataTable.AcceptChanges();
+        }
+
+
+
+
+        #endregion
+
+        private void buttonOutConsceince_Click(object sender, EventArgs e)
+        {
+            var qunatity = Convert.ToDouble(dataGridView.CurrentRow.Cells[5].Value);
+
+            DamgeActionBox box = new DamgeActionBox(this, qunatity);
+            var rs = box.ShowDialog();
+            if (rs == DialogResult.OK)
+            {
+                MoveToOutOfConscince(Quantity);
+
+            }
+        }
+
+
+        public void MoveToDamge(double Quantity)
+        {
+            try
+            {
+                if (dataGridView.RowCount > 0)
+                {
+                    var result = MessageCollection.OnDamgeAction();
+                    if (result == true)
+                    {
+                        loading.Show();
+                        if (_dataHelper.IsDbConnect())
+                        {
+                            RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[10].Value);
+
+                            income = _dataHelper.GetData().Where(x => x.Id == RowId).First();
+                            damage = new Damage
+                            {
+                                AddedDate = income.AddedDate,
+                                Code = income.Code,
+                                ExpDate = income.ExpDate,
+                                InterNo = income.InterNo,
+                                Name = income.Name,
+                                Price = income.Price,
+                                Quantity = Quantity,
+                                ReciptNo = income.ReciptNo,
+                                RectipDate = income.RectipDate,
+                                RectipImg = income.RectipImg,
+                                RectipName = income.RectipName,
+                                State = "تالف",
+                                Supplier = income.Supplier,
+                                Store = income.Store,
+                                TotalPrice = income.TotalPrice,
+                                Unit = income.Unit,
+                                User = income.User
+                            };
+                            _dataHelperForDamag.Add(damage);
+                            income.Quantity = income.Quantity - Quantity;
+                            if (income.Quantity <= 0)
+                            {
+                                _dataHelper.Delete(RowId);
+
+                            }
+                            else
+                            {
+                                _dataHelper.Edit(income);
+
+                            }
+
+
+                            MessageCollection.ShowDeletNotification();
+                            LoadData();
+
+
+                        }
+
+                        else
+                        {
+                            MessageCollection.ShowSlectRowsNotification();
+
+                        }
+                    }
+                    else
+                    {
+                    }
+                }
+
+                else
+                {
+                    MessageCollection.ShowEmptyDataMessage();
+
+                }
+            }
+            catch
+            {
+                MessageCollection.ShowServerMessage();
+            }
+            loading.Hide();
+        }
+
+        public void MoveToOutOfConscince(double Quantity)
+        {
+            try
+            {
+                if (dataGridView.RowCount > 0)
+                {
+                    var result = MessageCollection.OnConscinceAction();
+                    if (result == true)
+                    {
+                        loading.Show();
+                        if (_dataHelper.IsDbConnect())
+                        {
+                            RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[10].Value);
+
+                            income = _dataHelper.GetData().Where(x => x.Id == RowId).First();
+                            var outOfConscince = new OutOfConscinesMaterials
+                            {
+                                AddedDate = income.AddedDate,
+                                Code = income.Code,
+                                ExpDate = income.ExpDate,
+                                InterNo = income.InterNo,
+                                Name = income.Name,
+                                Price = income.Price,
+                                Quantity = Quantity,
+                                ReciptNo = income.ReciptNo,
+                                RectipDate = income.RectipDate,
+                                RectipImg = income.RectipImg,
+                                RectipName = income.RectipName,
+                                State = "خارج الذمة",
+                                Supplier = income.Supplier,
+                                Store = income.Store,
+                                TotalPrice = income.TotalPrice,
+                                Unit = income.Unit,
+                                User = income.User
+                            };
+                            _dataHelperForOutOfConscince.Add(outOfConscince);
+                            income.Quantity = income.Quantity - Quantity;
+                            if (income.Quantity <= 0)
+                            {
+                                _dataHelper.Delete(RowId);
+
+                            }
+                            else
+                            {
+                                _dataHelper.Edit(income);
+
+                            }
+
+
+                            MessageCollection.ShowDeletNotification();
+                            LoadData();
+
+
+                        }
+
+                        else
+                        {
+                            MessageCollection.ShowSlectRowsNotification();
+
+                        }
+                    }
+                    else
+                    {
+                    }
+                }
+
+                else
+                {
+                    MessageCollection.ShowEmptyDataMessage();
+
+                }
+            }
+            catch
+            {
+                MessageCollection.ShowServerMessage();
+            }
+            loading.Hide();
+        }
+
     }
 }
+

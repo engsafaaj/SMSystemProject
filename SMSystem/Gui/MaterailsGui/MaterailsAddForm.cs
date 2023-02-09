@@ -32,16 +32,21 @@ namespace SMSystem.Gui.MaterailsGui
             // Set Property Instance
             id = Id;
             this.MaterailsUserControl = storeUserControl;
+
+            label15.Text = label15.Text + Properties.Settings.Default.Currency;
+            label16.Text = label16.Text + Properties.Settings.Default.Currency;
+
             loading = LoadingUser.Instance();
+
             _dataHelper = (IDataHelper<Materails>)ContainerConfig.ObjectType("Materails");
             _dataHelperforStore = (IDataHelper<Stores>)ContainerConfig.ObjectType("Store");
+
             // Set DataFileds for Edit void
             if (id > 0)
             {
                 SetDataToFileds();
             }
         }
-
         // Events
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -67,6 +72,8 @@ namespace SMSystem.Gui.MaterailsGui
                     {
                         // Add
                         AddData();
+                        GetRandome();
+
                     }
 
                 }
@@ -82,6 +89,7 @@ namespace SMSystem.Gui.MaterailsGui
         private void MaterailsAddForm_Load(object sender, EventArgs e)
         {
             LoadStoresName();
+            LoadUnitName();
         }
         private void comboBoxStore_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -100,7 +108,6 @@ namespace SMSystem.Gui.MaterailsGui
             }
 
         }
-
         private void textBoxIncome_TextChanged(object sender, EventArgs e)
         {
             if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxPrice.Text, "^[0-9]"))
@@ -109,7 +116,6 @@ namespace SMSystem.Gui.MaterailsGui
                 textBoxPrice.Text = "0";
             }
         }
-
         private void textBoxOutCome_TextChanged(object sender, EventArgs e)
         {
             if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxPrice.Text, "^[0-9]"))
@@ -118,7 +124,6 @@ namespace SMSystem.Gui.MaterailsGui
                 textBoxPrice.Text = "0";
             }
         }
-
         private void textBoxPrice_TextChanged(object sender, EventArgs e)
         {
             if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxPrice.Text, "^[0-9]"))
@@ -135,13 +140,15 @@ namespace SMSystem.Gui.MaterailsGui
         {
             GetRandome();
         }
-
         private void linkLabelAddStore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             StoreAddForm storeAdd = new StoreAddForm(0, new StoreUserControl());
             storeAdd.Show();
+            storeAdd.FormClosed += (sender, EventArgs) =>
+            {
+                LoadStoresName();
+            };
         }
-
         // Methods
         #region Methods
         private async void AddData()
@@ -182,15 +189,13 @@ namespace SMSystem.Gui.MaterailsGui
                 MessageCollection.ShowServerMessage();
             }
         }
-
         private void ClearFileds()
         {
             textBoxCode.Text = textBoxFullName.Text = string.Empty;
         }
-
         private async void SetDataToFileds()
         {
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 materails = await Task.Run(() => _dataHelper.Find(id));
                 textBoxCode.Text = materails.Code;
@@ -226,7 +231,8 @@ namespace SMSystem.Gui.MaterailsGui
                 Price = Convert.ToDouble(textBoxPrice.Text),
                 TotalPrice = Convert.ToDouble(textBoxTotalPrice.Text),
                 AddedDate = DateTime.Now.Date,
-                StoreId = StoreId
+                StoreId = StoreId,
+               
             };
         }
         private void SetDataForEdit()
@@ -267,8 +273,6 @@ namespace SMSystem.Gui.MaterailsGui
                 return false;
             }
         }
-
-        // LoadStoresName
         private async void LoadStoresName()
         {
             if (_dataHelperforStore.IsDbConnect())
@@ -280,7 +284,6 @@ namespace SMSystem.Gui.MaterailsGui
                 MessageCollection.ShowServerMessage();
             }
         }
-
         private async void SetStoreId()
         {
             if (comboBoxStore.DataSource != null)
@@ -297,7 +300,6 @@ namespace SMSystem.Gui.MaterailsGui
                 }
             }
         }
-
         private void CalcuateTotalPrice()
         {
             double Quantity = Convert.ToDouble(textBoxQuantity.Text);
@@ -311,8 +313,8 @@ namespace SMSystem.Gui.MaterailsGui
             {
                 var NewCode = textBoxCode.Text;
                 var Name = textBoxFullName.Text;
-                var datacheck  = _dataHelper.GetData().Where(x => x.Code == NewCode || x.Name == Name).ToList();
-                if (datacheck.Count>0)
+                var datacheck = _dataHelper.GetData().Where(x => x.Code == NewCode || x.Name == Name).ToList();
+                if (datacheck.Count > 0)
                 {
                     IsCodeExcit = true;
                 }
@@ -333,8 +335,27 @@ namespace SMSystem.Gui.MaterailsGui
             Random random = new Random();
             textBoxCode.Text = random.Next().ToString();
         }
+        private void LoadUnitName()
+        {
+            if (_dataHelper.IsDbConnect())
+            {
+                // Load List Of Unit Name
+                var ListOfMaterailName =
+                _dataHelper.GetData().Select(x => x.Unit).Distinct().ToList();
+                // Set List and Enable Auto Complete Featrue
+                AutoCompleteStringCollection autoCompleteString = new AutoCompleteStringCollection();
+                autoCompleteString.AddRange(ListOfMaterailName.ToArray());
+                comboBoxUnit.AutoCompleteCustomSource = autoCompleteString;
+                comboBoxUnit.DataSource = ListOfMaterailName;
+                // Clear Variables
+                ListOfMaterailName = null;
+                autoCompleteString = null;
+            }
+            else
+            {
+                MessageCollection.ShowServerMessage();
+            }
+        }
         #endregion
-
-
     }
 }

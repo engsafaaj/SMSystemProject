@@ -61,6 +61,26 @@ namespace SMSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon _2022_09_08_123734 {
+            get {
+                object obj = ResourceManager.GetObject("_2022_09_08_123734", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _2022_09_08_1237341 {
+            get {
+                object obj = ResourceManager.GetObject("_2022_09_08_1237341", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap about_32px {
@@ -143,6 +163,24 @@ namespace SMSystem.Properties {
         internal static string DeleteNotificationText {
             get {
                 return ResourceManager.GetString("DeleteNotificationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اجراء حذف.
+        /// </summary>
+        internal static string DeleteOutComeText {
+            get {
+                return ResourceManager.GetString("DeleteOutComeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ان عملية الحذف هذه لا تؤثر على المواد ( المواد  المتوفرة). اذا كنت بصدد ازالة المواد ايضا يجب عليك التعديل ثم الازالة.
+        /// </summary>
+        internal static string DeletOutComeCaption {
+            get {
+                return ResourceManager.GetString("DeletOutComeCaption", resourceCulture);
             }
         }
         
@@ -270,9 +308,89 @@ namespace SMSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_box_96px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_box_96px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Close_80px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Close_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_csv_80px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_csv_80px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_customer_80px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_customer_80px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_damaged_parcel_32px_1 {
             get {
                 object obj = ResourceManager.GetObject("icons8_damaged_parcel_32px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_damaged_parcel_96px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_damaged_parcel_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_data_backup_80px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_data_backup_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_database_restore_80px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_database_restore_80px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_export_32px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_export_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -290,9 +408,109 @@ namespace SMSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_external_80px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_external_80px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_image_200px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_image_200px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_internal_32px_1 {
             get {
                 object obj = ResourceManager.GetObject("icons8_internal_32px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_internal_96px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_internal_96px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_memo_32px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_memo_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_moleskine_32px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_moleskine_32px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_near_me_160px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_near_me_160px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Notification_128px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Notification_128px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_ok_200px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_ok_200px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_printer_96px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_printer_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_scan_stock_128px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_scan_stock_128px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,6 +531,36 @@ namespace SMSystem.Properties {
         internal static System.Drawing.Bitmap icons8_select_users_32px_1 {
             get {
                 object obj = ResourceManager.GetObject("icons8_select_users_32px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_supplier_160px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_supplier_160px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_users_96px_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_users_96px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Walmart_200px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Walmart_200px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -356,6 +604,24 @@ namespace SMSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سيتم نقل المادة الى قسم المواد التالفة.
+        /// </summary>
+        internal static string OnDamgeCaption {
+            get {
+                return ResourceManager.GetString("OnDamgeCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اجراء اتلاف.
+        /// </summary>
+        internal static string OnDamgeText {
+            get {
+                return ResourceManager.GetString("OnDamgeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap open_box_32px {
@@ -366,12 +632,48 @@ namespace SMSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سيتم نقل المادة الى قسم المواد التي خارج الذمة.
+        /// </summary>
+        internal static string OutOfConscinceCaption {
+            get {
+                return ResourceManager.GetString("OutOfConscinceCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نقل خارج الذمة.
+        /// </summary>
+        internal static string OutOfConscinceText {
+            get {
+                return ResourceManager.GetString("OutOfConscinceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap print_32px {
             get {
                 object obj = ResourceManager.GetObject("print_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لا يمكن ان تكون الكمية المضافة اكبر من الكمية المتوفرة, انظر الى الكمية للمادة الحالية وتأكد من انها اكبر او لا تساوي صفر ثم اعد المحاولة.
+        /// </summary>
+        internal static string QuantityMaterialCaption {
+            get {
+                return ResourceManager.GetString("QuantityMaterialCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to كمية غير صحيحة.
+        /// </summary>
+        internal static string QuantityMaterialText {
+            get {
+                return ResourceManager.GetString("QuantityMaterialText", resourceCulture);
             }
         }
         
@@ -396,6 +698,24 @@ namespace SMSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to يبدو انك لم تقم بعملية الحفظ ولديك بيانات مضافة. سوف نحتفظ بها ويمكنك الرجوع لها في عملية الاضافة القادمة.
+        /// </summary>
+        internal static string SavedDataCaption {
+            get {
+                return ResourceManager.GetString("SavedDataCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تذكر !.
+        /// </summary>
+        internal static string SavedDataText {
+            get {
+                return ResourceManager.GetString("SavedDataText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap search_32px {
@@ -406,7 +726,7 @@ namespace SMSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to يبدو ان لديك مشكلة في الاتصال في قاعدة البيانات وهذا يعزى الى عده اسباب من بينها عدم صحة تثبيت السيرفر او صلاحيات الوصول او عدم تثبيت قاعدة البيانات او خطأ في الاتصال في قاعدة البيانات. يمكنك تعديل نص الاتصال في اعدادات النظام او يمكنك الاتصال في مدير النظام لحل المشكلة.
+        ///   Looks up a localized string similar to يبدو ان لديك مشكلة في في هذه العملية وهذا يعزى الى عده اسباب من بينها علاقة تربط هذه البيانات في بيانات اخرى يجب حذفها اولا او ريما عدم صحة تثبيت السيرفر او صلاحيات الوصول او عدم تثبيت قاعدة البيانات او خطأ في الاتصال في قاعدة البيانات. يمكنك تعديل نص الاتصال في اعدادات النظام او يمكنك الاتصال في مدير النظام لحل المشكلة.
         /// </summary>
         internal static string ServerConnectionCaption {
             get {
@@ -430,6 +750,33 @@ namespace SMSystem.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ان هذا الاجراء يؤدي الى حذف المادة بشكل كامل من هنا وايضا من المواد.
+        /// </summary>
+        internal static string ShowDeleteMaterialCaption {
+            get {
+                return ResourceManager.GetString("ShowDeleteMaterialCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تؤدي هذه العملية الى حذف المادة بشكل كامل وسيتم التأثير في المواد .
+        /// </summary>
+        internal static string ShowMoveDamgeCaption {
+            get {
+                return ResourceManager.GetString("ShowMoveDamgeCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حذف مادة.
+        /// </summary>
+        internal static string ShowMoveDamgeText {
+            get {
+                return ResourceManager.GetString("ShowMoveDamgeText", resourceCulture);
             }
         }
         

@@ -29,6 +29,7 @@ namespace SMSystem
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.flowLayoutPanelNavBar = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonhome = new System.Windows.Forms.Button();
             this.buttonStore = new System.Windows.Forms.Button();
@@ -38,12 +39,12 @@ namespace SMSystem
             this.buttonDamage = new System.Windows.Forms.Button();
             this.buttonSuppliers = new System.Windows.Forms.Button();
             this.buttonCustomers = new System.Windows.Forms.Button();
-            this.buttonReports = new System.Windows.Forms.Button();
             this.buttonAnalysis = new System.Windows.Forms.Button();
             this.buttonUsers = new System.Windows.Forms.Button();
             this.buttonHelp = new System.Windows.Forms.Button();
             this.buttonAbout = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.buttonOutOfConscneine = new System.Windows.Forms.Button();
             this.flowLayoutPanelNavBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,9 +58,9 @@ namespace SMSystem
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonIncome);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonOutCome);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonDamage);
+            this.flowLayoutPanelNavBar.Controls.Add(this.buttonOutOfConscneine);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonSuppliers);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonCustomers);
-            this.flowLayoutPanelNavBar.Controls.Add(this.buttonReports);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonAnalysis);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonUsers);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonHelp);
@@ -134,6 +135,7 @@ namespace SMSystem
             this.buttonOutCome.TabIndex = 10;
             this.buttonOutCome.Text = "  المخرجات";
             this.buttonOutCome.UseVisualStyleBackColor = true;
+            this.buttonOutCome.Click += new System.EventHandler(this.buttonOutCome_Click);
             // 
             // buttonDamage
             // 
@@ -146,12 +148,13 @@ namespace SMSystem
             this.buttonDamage.TabIndex = 11;
             this.buttonDamage.Text = "  التالف";
             this.buttonDamage.UseVisualStyleBackColor = true;
+            this.buttonDamage.Click += new System.EventHandler(this.buttonDamage_Click);
             // 
             // buttonSuppliers
             // 
             this.buttonSuppliers.Image = global::SMSystem.Properties.Resources.supplier_32px;
             this.buttonSuppliers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSuppliers.Location = new System.Drawing.Point(9, 6);
+            this.buttonSuppliers.Location = new System.Drawing.Point(897, 78);
             this.buttonSuppliers.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonSuppliers.Name = "buttonSuppliers";
             this.buttonSuppliers.Size = new System.Drawing.Size(140, 60);
@@ -164,7 +167,7 @@ namespace SMSystem
             // 
             this.buttonCustomers.Image = global::SMSystem.Properties.Resources.users_32px;
             this.buttonCustomers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonCustomers.Location = new System.Drawing.Point(897, 78);
+            this.buttonCustomers.Location = new System.Drawing.Point(749, 78);
             this.buttonCustomers.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonCustomers.Name = "buttonCustomers";
             this.buttonCustomers.Size = new System.Drawing.Size(140, 60);
@@ -172,18 +175,6 @@ namespace SMSystem
             this.buttonCustomers.Text = "  العملاء";
             this.buttonCustomers.UseVisualStyleBackColor = true;
             this.buttonCustomers.Click += new System.EventHandler(this.buttonCustomers_Click);
-            // 
-            // buttonReports
-            // 
-            this.buttonReports.Image = global::SMSystem.Properties.Resources.combo_chart_32px;
-            this.buttonReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonReports.Location = new System.Drawing.Point(749, 78);
-            this.buttonReports.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonReports.Name = "buttonReports";
-            this.buttonReports.Size = new System.Drawing.Size(140, 60);
-            this.buttonReports.TabIndex = 8;
-            this.buttonReports.Text = "  التقارير";
-            this.buttonReports.UseVisualStyleBackColor = true;
             // 
             // buttonAnalysis
             // 
@@ -196,6 +187,7 @@ namespace SMSystem
             this.buttonAnalysis.TabIndex = 4;
             this.buttonAnalysis.Text = "التحليل";
             this.buttonAnalysis.UseVisualStyleBackColor = true;
+            this.buttonAnalysis.Click += new System.EventHandler(this.buttonAnalysis_Click);
             // 
             // buttonUsers
             // 
@@ -210,6 +202,7 @@ namespace SMSystem
             this.buttonUsers.Text = "المستخدمين";
             this.buttonUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonUsers.UseVisualStyleBackColor = true;
+            this.buttonUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
             // buttonHelp
             // 
@@ -222,6 +215,7 @@ namespace SMSystem
             this.buttonHelp.TabIndex = 5;
             this.buttonHelp.Text = "  الاعدادات";
             this.buttonHelp.UseVisualStyleBackColor = true;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
             // 
             // buttonAbout
             // 
@@ -234,6 +228,7 @@ namespace SMSystem
             this.buttonAbout.TabIndex = 6;
             this.buttonAbout.Text = "حول";
             this.buttonAbout.UseVisualStyleBackColor = true;
+            this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
             // 
             // panelContainer
             // 
@@ -244,6 +239,19 @@ namespace SMSystem
             this.panelContainer.Size = new System.Drawing.Size(1062, 598);
             this.panelContainer.TabIndex = 1;
             // 
+            // buttonOutOfConscneine
+            // 
+            this.buttonOutOfConscneine.Image = global::SMSystem.Properties.Resources.icons8_export_32px;
+            this.buttonOutOfConscneine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonOutOfConscneine.Location = new System.Drawing.Point(9, 6);
+            this.buttonOutOfConscneine.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonOutOfConscneine.Name = "buttonOutOfConscneine";
+            this.buttonOutOfConscneine.Size = new System.Drawing.Size(140, 60);
+            this.buttonOutOfConscneine.TabIndex = 13;
+            this.buttonOutOfConscneine.Text = "   خارج الذمة";
+            this.buttonOutOfConscneine.UseVisualStyleBackColor = true;
+            this.buttonOutOfConscneine.Click += new System.EventHandler(this.buttonOutOfConscneine_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 37F);
@@ -253,6 +261,7 @@ namespace SMSystem
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.flowLayoutPanelNavBar);
             this.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "Main";
@@ -260,6 +269,7 @@ namespace SMSystem
             this.RightToLeftLayout = true;
             this.Text = "مخزن";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.flowLayoutPanelNavBar.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -278,11 +288,11 @@ namespace SMSystem
         private System.Windows.Forms.Button buttonAbout;
         public System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Button buttonCustomers;
-        private System.Windows.Forms.Button buttonReports;
         private System.Windows.Forms.Button buttonIncome;
         private System.Windows.Forms.Button buttonOutCome;
         private System.Windows.Forms.Button buttonDamage;
         private System.Windows.Forms.Button buttonUsers;
+        private System.Windows.Forms.Button buttonOutOfConscneine;
     }
 }
 

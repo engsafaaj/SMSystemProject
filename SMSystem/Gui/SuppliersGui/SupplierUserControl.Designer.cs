@@ -39,7 +39,6 @@ namespace SMSystem.Gui.SuppliersGui
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
-            this.buttonPrint = new System.Windows.Forms.Button();
             this.panelSearchBar = new System.Windows.Forms.Panel();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
@@ -57,7 +56,6 @@ namespace SMSystem.Gui.SuppliersGui
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonEdit);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonDelete);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonRefresh);
-            this.flowLayoutPanelNavBar.Controls.Add(this.buttonPrint);
             this.flowLayoutPanelNavBar.Controls.Add(this.panelSearchBar);
             this.flowLayoutPanelNavBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanelNavBar.Location = new System.Drawing.Point(0, 0);
@@ -119,25 +117,12 @@ namespace SMSystem.Gui.SuppliersGui
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
-            // buttonPrint
-            // 
-            this.buttonPrint.Image = global::SMSystem.Properties.Resources.print_32px;
-            this.buttonPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonPrint.Location = new System.Drawing.Point(416, 11);
-            this.buttonPrint.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(120, 54);
-            this.buttonPrint.TabIndex = 4;
-            this.buttonPrint.Text = "  طباعة";
-            this.buttonPrint.UseVisualStyleBackColor = true;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
-            // 
             // panelSearchBar
             // 
             this.panelSearchBar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.panelSearchBar.Controls.Add(this.buttonSearch);
             this.panelSearchBar.Controls.Add(this.textBoxSearch);
-            this.panelSearchBar.Location = new System.Drawing.Point(25, 16);
+            this.panelSearchBar.Location = new System.Drawing.Point(153, 16);
             this.panelSearchBar.Name = "panelSearchBar";
             this.panelSearchBar.Size = new System.Drawing.Size(384, 44);
             this.panelSearchBar.TabIndex = 4;
@@ -214,7 +199,7 @@ namespace SMSystem.Gui.SuppliersGui
             this.dataGridView.TabIndex = 2;
             this.dataGridView.DoubleClick += new System.EventHandler(this.dataGridView_DoubleClick);
             // 
-            // StoreUserControl
+            // SupplierUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -223,7 +208,7 @@ namespace SMSystem.Gui.SuppliersGui
             this.Controls.Add(this.flowLayoutPanelNavBar);
             this.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.Name = "StoreUserControl";
+            this.Name = "SupplierUserControl";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(1062, 598);
             this.flowLayoutPanelNavBar.ResumeLayout(false);
@@ -240,7 +225,6 @@ namespace SMSystem.Gui.SuppliersGui
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
-        private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Panel panelSearchBar;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button buttonSearch;

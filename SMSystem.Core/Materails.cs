@@ -26,6 +26,12 @@ namespace SMSystem.Core
         [Required]
         public double OutCome { get; set; }
         [Required]
+        public double Damge { get; set; }
+        [Required]
+        public double OutConscience { get; set; }
+        [Required]
+        public double ConscinceCard { get; set; }
+        [Required]
         public double Price { get; set; }
         [Required]
         public double TotalPrice { get; set; }
@@ -33,10 +39,8 @@ namespace SMSystem.Core
         public DateTime AddedDate { get; set; }
         public virtual List<Income> Income { get; set; }
         // Navigation 
-        [Required]
-        [ForeignKey("StoreId")]
         public int StoreId { get; set; }
-        public virtual Stores Stores { get; set; }
+        public Stores Stores { get; set; }
 
     }
 }

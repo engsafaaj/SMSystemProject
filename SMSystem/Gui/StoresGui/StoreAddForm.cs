@@ -105,7 +105,7 @@ namespace SMSystem.Gui.StoresGui
 
         private async void SetDataToFileds()
         {
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 stores = await Task.Run(() => _dataHelper.Find(id));
                 textBoxName.Text = stores.Name;

@@ -1,3 +1,4 @@
+using SMSystem.Gui;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace SMSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Startup getStarted = new Startup();
-            Application.Run(new Main());
+            Application.Run(new StartForm());
         }
 
     }

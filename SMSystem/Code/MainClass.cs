@@ -30,5 +30,6 @@ namespace SMSystem.Code
             _main.panelContainer.Controls.Add(Page);
         }
 
+      
     }
 }

@@ -10,6 +10,11 @@ namespace SMSystem.Data
         // Fileds
         private DBContext db;
         private Income income;
+        public IncomeEntity()
+        {
+            db = new DBContext();
+
+        }
 
         // Methods
         public int Add(Income table)
@@ -82,9 +87,14 @@ namespace SMSystem.Data
             || x.Unit.Contains(SearchItem)
             || x.Code.Contains(SearchItem)
             || x.Store.Contains(SearchItem)
+            || x.State.Contains(SearchItem)
             || x.ReciptNo.Contains(SearchItem)
+            || x.RectipName.Contains(SearchItem)
+            || x.RectipDate.ToString().Contains(SearchItem)
+            || x.InterNo.ToString().Contains(SearchItem)
             || x.Supplier.Contains(SearchItem)
             || x.AddedDate.ToString().Contains(SearchItem)
+            || x.ExpDate.ToString().Contains(SearchItem)
             || x.Quantity.ToString().Contains(SearchItem)
             || x.Price.ToString().Contains(SearchItem)
             || x.TotalPrice.ToString().Contains(SearchItem)

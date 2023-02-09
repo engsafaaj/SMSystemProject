@@ -105,7 +105,7 @@ namespace SMSystem.Gui.SuppliersGui
 
         private async void SetDataToFileds()
         {
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 suppliers = await Task.Run(() => _dataHelper.Find(id));
                 textBoxName.Text = suppliers.Name;

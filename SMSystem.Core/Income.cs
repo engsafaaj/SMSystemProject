@@ -28,16 +28,24 @@ namespace SMSystem.Core
         public string Supplier { get; set; }
         [Required]
         public string ReciptNo { get; set; }
+        [Required]
+        public string RectipName { get; set; }
+        [Required]
+        public DateTime RectipDate { get; set; }
+        [Required]
+        public int InterNo { get; set; }
         public byte[] RectipImg { get; set; }
         [Required]
         public DateTime AddedDate { get; set; }
         public DateTime ExpDate { get; set; }
         public string State { get; set; }
+        [Required]
+        public string User { get; set; }
+        [Required]
+        public DateTime IncomeDate { get; set; }
 
         // Navigation
-        [Required]
-        [ForeignKey("MaterailId")]
         public int MaterailId { get; set; }
-        public virtual Materails Materails { get; set; }
+        public Materails Materails { get; set; }
     }
 }

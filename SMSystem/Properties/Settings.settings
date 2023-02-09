@@ -2,11 +2,56 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SMSystem.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="SQLServerConString" Type="System.String" Scope="Application">
+    <Setting Name="SQLServerConString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Server=.\SQLEXPRESS;DataBase=DBSMSystem;Integrated Security=True</Value>
     </Setting>
     <Setting Name="NotificationTime" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="User" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Role" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Currency" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(د.ع)</Value>
+    </Setting>
+    <Setting Name="CompanyName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">اسم الشركة</Value>
+    </Setting>
+    <Setting Name="CompanyDescritption" Type="System.String" Scope="User">
+      <Value Profile="(Default)">وصف الشركة</Value>
+    </Setting>
+    <Setting Name="CompanyLogo" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastBackUpDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NotificationDamagDuration" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="HigherEmpName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">اسم الجهة العليا</Value>
+    </Setting>
+    <Setting Name="LowerEmpName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">اسم الجهة الدنيا</Value>
+    </Setting>
+    <Setting Name="HihgerEmpTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">الوظيفة</Value>
+    </Setting>
+    <Setting Name="LowerEmpTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">الوظيفة</Value>
+    </Setting>
+    <Setting Name="HigherEmpDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2022 /     /</Value>
+    </Setting>
+    <Setting Name="LowerEmpDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2022 /     /</Value>
+    </Setting>
+    <Setting Name="TextBoxReciveDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> /     / 2022</Value>
     </Setting>
   </Settings>
 </SettingsFile>

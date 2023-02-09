@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using SMSystem.Gui.SuppliersGui;
 
 namespace SMSystem.Gui.IncomeGui
 {
@@ -33,11 +34,9 @@ namespace SMSystem.Gui.IncomeGui
         private byte[] recitpImage;
         public int MaterialId;
         private Materails materails;
-
         #endregion
 
         // Constructores
-
         public IncomeAddForm(int Id, IncomeUserControl MaterialUserControl, MaterailsUserControl materailsUserControl)
         {
             InitializeComponent();
@@ -45,6 +44,8 @@ namespace SMSystem.Gui.IncomeGui
             id = Id;
             this.IncomeUserControl = MaterialUserControl;
             this.materailsUserControl = materailsUserControl;
+            label11.Text = label11.Text + Properties.Settings.Default.Currency;
+            label16.Text = label16.Text + Properties.Settings.Default.Currency;
             loading = LoadingUser.Instance();
             _dataHelper = (IDataHelper<Income>)ContainerConfig.ObjectType("Income");
             _dataHelperforMaterail = (IDataHelper<Materails>)ContainerConfig.ObjectType("Materails");
@@ -100,6 +101,7 @@ namespace SMSystem.Gui.IncomeGui
             LoadMaterailsName();
             LoadSupplierName();
             LoadMaterailsCode();
+            LoadReciptName();
             textBoxNewCode.Text = GetRandome();
 
             // Set Properties for Directly Added
@@ -111,6 +113,8 @@ namespace SMSystem.Gui.IncomeGui
                 textBoxCode.Enabled = false;
                 SetMaterailIdByName();
             }
+            // Set Last Enter Number
+            textBoxInterNo.Text = GetLastEnterNumber().ToString();
 
         }
         private void textBoxQuantity_TextChanged(object sender, EventArgs e)
@@ -118,7 +122,7 @@ namespace SMSystem.Gui.IncomeGui
             if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxQuantity.Text, "^[0-9]"))
             {
                 MessageCollection.ShowInvalidValue();
-                textBoxQuantity.Text = "0";
+                textBoxQuantity.Text = "1";
             }
             else
             {
@@ -178,6 +182,37 @@ namespace SMSystem.Gui.IncomeGui
                 dateTimePickerExpData.Enabled = true;
             }
         }
+        private void textBoxInterNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBoxReciptNo_TextChanged(object sender, EventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxReciptNo.Text, "^[0-9]"))
+            {
+                MessageCollection.ShowInvalidValue();
+                textBoxReciptNo.Text = "0";
+            }
+
+        }
+        private void textBoxInterNo_TextChanged_1(object sender, EventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBoxInterNo.Text, "^[0-9]"))
+            {
+                MessageCollection.ShowInvalidValue();
+                textBoxInterNo.Text = "0";
+            }
+        }
+        private void linkLabelNewSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SupplierAddForm supplierAddForm = new SupplierAddForm(0, new SupplierUserControl());
+            supplierAddForm.Show();
+            supplierAddForm.FormClosed += (sender, EventArgs) =>
+              {
+                  LoadSupplierName();
+              };
+
+        }
         #endregion
 
         // Methods
@@ -198,6 +233,9 @@ namespace SMSystem.Gui.IncomeGui
                 ClearFileds();
                 // Updat View
                 IncomeUserControl.LoadData();
+                // Set Last Enter Number
+                textBoxInterNo.Text = GetLastEnterNumber().ToString();
+                textBoxNewCode.Text = GetRandome();
             }
             else // End with database error
             {
@@ -230,7 +268,7 @@ namespace SMSystem.Gui.IncomeGui
         }
         private async void SetDataToFileds()
         {
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 income = await Task.Run(() => _dataHelper.Find(id));
                 if (income != null)
@@ -240,13 +278,18 @@ namespace SMSystem.Gui.IncomeGui
                     textBoxNewPrice.Text = income.Price.ToString();
                     comboBoxName.SelectedItem = income.Name;
                     textBoxQuantity.Text = income.Quantity.ToString();
-                    textBoxRecipt.Text = income.ReciptNo;
+                    textBoxReciptNo.Text = income.ReciptNo;
                     recitpImage = income.RectipImg;
                     textBoxStore.Text = income.Store;
                     comboBoxSupplier.SelectedItem = income.Supplier;
                     textBoxUnit.Text = income.Unit;
                     textBoxPrice.Text = income.TotalPrice.ToString();
                     MaterialId = income.MaterailId;
+                    textBoxReciptName.Text = income.RectipName;
+                    dateTimePickerReciptDate.Value = income.RectipDate;
+                    textBoxInterNo.Text = income.InterNo.ToString();
+
+
                 }
 
             }
@@ -266,7 +309,7 @@ namespace SMSystem.Gui.IncomeGui
                 Price = Convert.ToDouble(textBoxNewPrice.Text),
                 Name = comboBoxName.Text,
                 Quantity = Convert.ToDouble(textBoxQuantity.Text),
-                ReciptNo = textBoxRecipt.Text,
+                ReciptNo = textBoxReciptNo.Text,
                 RectipImg = recitpImage,
                 Store = textBoxStore.Text,
                 Supplier = comboBoxSupplier.SelectedItem.ToString(),
@@ -274,7 +317,13 @@ namespace SMSystem.Gui.IncomeGui
                 TotalPrice = Convert.ToDouble(textBoxTotalPrice.Text),
                 MaterailId = MaterialId,
                 ExpDate = dateTimePickerExpData.Value.Date,
-                State = "متوفر"
+                State = "متوفر",
+                InterNo = Convert.ToInt32(textBoxInterNo.Text),
+                RectipDate = dateTimePickerReciptDate.Value.Date,
+                RectipName = textBoxReciptName.Text,
+                User = Properties.Settings.Default.User,
+                IncomeDate= dateTimePickerIncome.Value.Date
+
 
             };
         }
@@ -288,7 +337,7 @@ namespace SMSystem.Gui.IncomeGui
                 Price = Convert.ToDouble(textBoxNewPrice.Text),
                 Name = comboBoxName.Text,
                 Quantity = Convert.ToDouble(textBoxQuantity.Text),
-                ReciptNo = textBoxRecipt.Text,
+                ReciptNo = textBoxReciptNo.Text,
                 RectipImg = recitpImage,
                 Store = textBoxStore.Text,
                 Supplier = comboBoxSupplier.SelectedItem.ToString(),
@@ -296,7 +345,13 @@ namespace SMSystem.Gui.IncomeGui
                 TotalPrice = Convert.ToDouble(textBoxTotalPrice.Text),
                 MaterailId = MaterialId,
                 ExpDate = dateTimePickerExpData.Value.Date,
-                State = "متوفر"
+                State = "متوفر",
+                InterNo = Convert.ToInt32(textBoxInterNo.Text),
+                RectipDate = dateTimePickerReciptDate.Value.Date,
+                RectipName = textBoxReciptName.Text,
+                User = Properties.Settings.Default.User,
+                IncomeDate = dateTimePickerIncome.Value.Date
+
             };
         }
         private bool IsRequiredFiledEmpty()
@@ -308,8 +363,10 @@ namespace SMSystem.Gui.IncomeGui
                 || textBoxNewPrice.Text == string.Empty
                 || textBoxQuantity.Text == string.Empty
                 || textBoxTotalPrice.Text == string.Empty
+                || textBoxReciptName.Text == string.Empty
+                || textBoxInterNo.Text == string.Empty
                 || comboBoxSupplier.SelectedItem == null
-                || textBoxRecipt.Text == string.Empty)
+                || textBoxReciptNo.Text == string.Empty)
             {
                 return true;
             }
@@ -351,6 +408,27 @@ namespace SMSystem.Gui.IncomeGui
                 autoCompleteString.AddRange(ListOfMaterailCode.ToArray());
                 textBoxCode.AutoCompleteCustomSource = autoCompleteString;
                 textBoxCode.DataSource = ListOfMaterailCode;
+                // Clear Variables
+                ListOfMaterailCode = null;
+                autoCompleteString = null;
+            }
+            else
+            {
+                MessageCollection.ShowServerMessage();
+            }
+        }
+        private async void LoadReciptName()
+        {
+            if (_dataHelper.IsDbConnect())
+            {
+                // Load List Of Recipt Name
+                var ListOfMaterailCode = await Task.Run(() =>
+                _dataHelper.GetData().Select(x => x.RectipName).Distinct().ToList());
+                // Set List and Enable Auto Complete Featrue
+                AutoCompleteStringCollection autoCompleteString = new AutoCompleteStringCollection();
+                autoCompleteString.AddRange(ListOfMaterailCode.ToArray());
+                textBoxReciptName.AutoCompleteCustomSource = autoCompleteString;
+                textBoxReciptName.DataSource = ListOfMaterailCode;
                 // Clear Variables
                 ListOfMaterailCode = null;
                 autoCompleteString = null;
@@ -514,8 +592,16 @@ namespace SMSystem.Gui.IncomeGui
                 MessageCollection.ShowServerMessage();
             }
         }
-
+        private int GetLastEnterNumber()
+        {
+            if (_dataHelper.IsDbConnect())
+            {
+                return _dataHelper.GetData().Select(x => x.InterNo).LastOrDefault() + 1;
+            }
+            else { return 0; }
+        }
         #endregion
+
 
     }
 }

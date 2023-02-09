@@ -1,8 +1,10 @@
-﻿using SMSystem.Code;
+﻿using FastMember;
+using SMSystem.Code;
 using SMSystem.Core;
 using SMSystem.Data;
 using SMSystem.Gui.IncomeGui;
 using SMSystem.Gui.OtherGui;
+using SMSystem.Gui.OutComeGui;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,6 +27,7 @@ namespace SMSystem.Gui.MaterailsGui
         private Label labelEmptyData;
         private string searchItem;
         private Income IncomeTable;
+        private DataTable dataTable;
 
         // Constructores
         public MaterailsUserControl()
@@ -38,11 +41,18 @@ namespace SMSystem.Gui.MaterailsGui
         }
 
         #region Events
+        private void buttonOucome_Click(object sender, EventArgs e)
+        {
+            OutComeAddForm OutComeAdd = new OutComeAddForm(0, new OutComeUserControl(), this);
+            OutComeAdd.Show();
+        }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             MaterailsAddForm storeAdd = new MaterailsAddForm(0, this);
             storeAdd.Show();
         }
+
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridView.RowCount > 0)
@@ -56,6 +66,7 @@ namespace SMSystem.Gui.MaterailsGui
                 MessageCollection.ShowEmptyDataMessage();
             }
         }
+
         private void buttonIncome_Click(object sender, EventArgs e)
         {
             string CurrentMaterialName = dataGridView.CurrentRow.Cells[3].Value.ToString();
@@ -67,7 +78,8 @@ namespace SMSystem.Gui.MaterailsGui
             AutoLoadMaterailData(IncomeAdd);
             IncomeAdd.Show();
         }
-        private async void buttonDelete_Click(object sender, EventArgs e)
+
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
             try
             {
@@ -78,14 +90,14 @@ namespace SMSystem.Gui.MaterailsGui
                     if (result == true)
                     {
                         loading.Show();
-                        if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                        if (_dataHelper.IsDbConnect())
                         {
                             if (IdList.Count > 0)
                             {
                                 for (int i = 0; i < IdList.Count; i++)
                                 {
                                     RowId = IdList[i];
-                                    await Task.Run(() => _dataHelper.Delete(RowId));
+                                    _dataHelper.Delete(RowId);
                                 }
                                 LoadData();
                                 MessageCollection.ShowDeletNotification();
@@ -117,7 +129,14 @@ namespace SMSystem.Gui.MaterailsGui
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-
+            dataTable = new DataTable();
+            using (var reader = ObjectReader.Create(_dataHelper.GetData()))
+            {
+                dataTable.Load(reader);
+            }
+            RearrangeDataTableColumns(dataTable);
+            PrintDialogForm printDialog = new PrintDialogForm(dataTable);
+            printDialog.Show();
 
         }
 
@@ -126,14 +145,17 @@ namespace SMSystem.Gui.MaterailsGui
             LoadDataForSearch();
 
         }
+
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             LoadDataForSearch();
         }
+
         private void dataGridView_DoubleClick(object sender, EventArgs e)
         {
             buttonEdit_Click(sender, e);
@@ -148,7 +170,7 @@ namespace SMSystem.Gui.MaterailsGui
 
             loading.Show();
             // Check if connection is available
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 // Loading Data and Set Data
                 dataGridView.DataSource = await Task.Run(() => _dataHelper.GetData());
@@ -177,7 +199,7 @@ namespace SMSystem.Gui.MaterailsGui
                 loading.Show();
                 searchItem = textBoxSearch.Text;
                 // Check if connection is available
-                if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                if (_dataHelper.IsDbConnect())
                 {
                     // Loading Data
                     dataGridView.DataSource = await Task.Run(() => localData = _dataHelper.Search(searchItem));
@@ -194,8 +216,6 @@ namespace SMSystem.Gui.MaterailsGui
             ShowLabelIfEmptyData();
 
         }
-
-        // Get a List of Id for selcted rows
         private void SetIDSelcted()
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -206,6 +226,7 @@ namespace SMSystem.Gui.MaterailsGui
                 }
             }
         }
+
         private void SetDataGridViewColumns()
         {
             try
@@ -217,22 +238,23 @@ namespace SMSystem.Gui.MaterailsGui
                 dataGridView.Columns[3].HeaderCell.Value = "الاسم";
                 dataGridView.Columns[4].HeaderCell.Value = "الوصف";
                 dataGridView.Columns[5].HeaderCell.Value = "الوحدة";
-                dataGridView.Columns[6].HeaderCell.Value = "الكمية";
+                dataGridView.Columns[6].HeaderCell.Value = "المتوفر";
                 dataGridView.Columns[7].HeaderCell.Value = "الداخل";
                 dataGridView.Columns[8].HeaderCell.Value = "الخارج";
-                dataGridView.Columns[9].HeaderCell.Value = "السعر";
-                dataGridView.Columns[10].HeaderCell.Value = "الاجمالي";
-                dataGridView.Columns[11].HeaderCell.Value = "تاريخ الاضافة";
-
+                dataGridView.Columns[9].HeaderCell.Value = "التالف";
+                dataGridView.Columns[10].HeaderCell.Value = "خارج الذمة";
+                dataGridView.Columns[11].HeaderCell.Value = "بطاقة الذمة";
+                dataGridView.Columns[12].HeaderCell.Value = "السعر" + Properties.Settings.Default.Currency;
+                dataGridView.Columns[13].HeaderCell.Value = "الاجمالي" + Properties.Settings.Default.Currency;
+                dataGridView.Columns[14].HeaderCell.Value = "تاريخ الاضافة";
                 // Hide Columns
-                dataGridView.Columns[12].Visible = false;
-                dataGridView.Columns[13].Visible = false;
+                dataGridView.Columns[15].Visible = false;
+                dataGridView.Columns[16].Visible = false;
             }
             catch { }
 
 
         }
-
         // Singleton Instance
         public static UserControl Instance()
         {
@@ -252,8 +274,7 @@ namespace SMSystem.Gui.MaterailsGui
             }
         }
 
-
-        private void AutoLoadMaterailData( IncomeAddForm incomeAdd)
+        private void AutoLoadMaterailData(IncomeAddForm incomeAdd)
         {
 
             if (_dataHelper.IsDbConnect())
@@ -278,6 +299,48 @@ namespace SMSystem.Gui.MaterailsGui
             }
         }
 
+        private void RearrangeDataTableColumns(DataTable dataTable)
+        {
+
+
+            dataTable.Columns["Id"].SetOrdinal(0);
+            dataTable.Columns["Id"].ColumnName = "المعرف";
+            dataTable.Columns["Store"].SetOrdinal(1);
+            dataTable.Columns["Store"].ColumnName = "المخزن";
+            dataTable.Columns["Code"].SetOrdinal(2);
+            dataTable.Columns["Code"].ColumnName = "الكود";
+            dataTable.Columns["Name"].SetOrdinal(3);
+            dataTable.Columns["Name"].ColumnName = "اسم المادة";
+            dataTable.Columns["Descritpion"].SetOrdinal(4);
+            dataTable.Columns["Descritpion"].ColumnName = "الوصف";
+            dataTable.Columns["Unit"].SetOrdinal(5);
+            dataTable.Columns["Unit"].ColumnName = "الوحدة";
+            dataTable.Columns["Quantity"].SetOrdinal(6);
+            dataTable.Columns["Quantity"].ColumnName = "الكمية";
+            dataTable.Columns["InCome1"].SetOrdinal(7);
+            dataTable.Columns["InCome1"].ColumnName = "الداخل";
+            dataTable.Columns["OutCome"].SetOrdinal(8);
+            dataTable.Columns["OutCome"].ColumnName = "الخارج";
+            dataTable.Columns["Damge"].SetOrdinal(9);
+            dataTable.Columns["Damge"].ColumnName = "التالف";
+            dataTable.Columns["OutConscience"].SetOrdinal(10);
+            dataTable.Columns["OutConscience"].ColumnName = "خارج الذمة";
+            dataTable.Columns["ConscinceCard"].SetOrdinal(11);
+            dataTable.Columns["ConscinceCard"].ColumnName = "بطاقة الذمة";
+            dataTable.Columns["Price"].SetOrdinal(12);
+            dataTable.Columns["Price"].ColumnName = "السعر" + Properties.Settings.Default.Currency;
+            dataTable.Columns["TotalPrice"].SetOrdinal(13);
+            dataTable.Columns["TotalPrice"].ColumnName = "الاجمالي" + Properties.Settings.Default.Currency;
+            dataTable.Columns["AddedDate"].SetOrdinal(14);
+            dataTable.Columns["AddedDate"].ColumnName = "تاريخ الاضافة";
+
+            // Remove unnesessary columns
+            dataTable.Columns.Remove("StoreId");
+            dataTable.Columns.Remove("Stores");
+            dataTable.Columns.Remove("InCome");
+            // Accept Changes
+            dataTable.AcceptChanges();
+        }
         #endregion
 
 

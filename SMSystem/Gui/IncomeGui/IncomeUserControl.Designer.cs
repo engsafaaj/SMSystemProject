@@ -38,9 +38,9 @@ namespace SMSystem.Gui.IncomeGui
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonDamge = new System.Windows.Forms.Button();
+            this.buttonOutConsceince = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.buttonDeleteFromMaterials = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.panelSearchBar = new System.Windows.Forms.Panel();
             this.buttonSearch = new System.Windows.Forms.Button();
@@ -58,8 +58,8 @@ namespace SMSystem.Gui.IncomeGui
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonAdd);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonEdit);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonDelete);
-            this.flowLayoutPanelNavBar.Controls.Add(this.button3);
-            this.flowLayoutPanelNavBar.Controls.Add(this.buttonDeleteFromMaterials);
+            this.flowLayoutPanelNavBar.Controls.Add(this.buttonDamge);
+            this.flowLayoutPanelNavBar.Controls.Add(this.buttonOutConsceince);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonRefresh);
             this.flowLayoutPanelNavBar.Controls.Add(this.buttonPrint);
             this.flowLayoutPanelNavBar.Controls.Add(this.panelSearchBar);
@@ -110,11 +110,37 @@ namespace SMSystem.Gui.IncomeGui
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // buttonDamge
+            // 
+            this.buttonDamge.Image = global::SMSystem.Properties.Resources.icons8_damaged_parcel_32px_1;
+            this.buttonDamge.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonDamge.Location = new System.Drawing.Point(523, 11);
+            this.buttonDamge.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonDamge.Name = "buttonDamge";
+            this.buttonDamge.Size = new System.Drawing.Size(120, 54);
+            this.buttonDamge.TabIndex = 7;
+            this.buttonDamge.Text = "إتلاف";
+            this.buttonDamge.UseVisualStyleBackColor = true;
+            this.buttonDamge.Click += new System.EventHandler(this.buttonDamge_Click);
+            // 
+            // buttonOutConsceince
+            // 
+            this.buttonOutConsceince.Image = global::SMSystem.Properties.Resources.icons8_export_32px;
+            this.buttonOutConsceince.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonOutConsceince.Location = new System.Drawing.Point(354, 11);
+            this.buttonOutConsceince.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.buttonOutConsceince.Name = "buttonOutConsceince";
+            this.buttonOutConsceince.Size = new System.Drawing.Size(161, 54);
+            this.buttonOutConsceince.TabIndex = 9;
+            this.buttonOutConsceince.Text = "  خارج الذمة";
+            this.buttonOutConsceince.UseVisualStyleBackColor = true;
+            this.buttonOutConsceince.Click += new System.EventHandler(this.buttonOutConsceince_Click);
+            // 
             // buttonRefresh
             // 
             this.buttonRefresh.Image = global::SMSystem.Properties.Resources.refresh_32px;
             this.buttonRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonRefresh.Location = new System.Drawing.Point(183, 11);
+            this.buttonRefresh.Location = new System.Drawing.Point(226, 11);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(120, 54);
@@ -123,37 +149,11 @@ namespace SMSystem.Gui.IncomeGui
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
-            // button3
-            // 
-            this.button3.Image = global::SMSystem.Properties.Resources.icons8_damaged_parcel_32px_1;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(523, 11);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 54);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "إتلاف";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeleteFromMaterials
-            // 
-            this.buttonDeleteFromMaterials.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonDeleteFromMaterials.Image = global::SMSystem.Properties.Resources.Delete_32px;
-            this.buttonDeleteFromMaterials.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDeleteFromMaterials.Location = new System.Drawing.Point(311, 11);
-            this.buttonDeleteFromMaterials.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonDeleteFromMaterials.Name = "buttonDeleteFromMaterials";
-            this.buttonDeleteFromMaterials.Size = new System.Drawing.Size(204, 54);
-            this.buttonDeleteFromMaterials.TabIndex = 8;
-            this.buttonDeleteFromMaterials.Text = "   حذف من المواد";
-            this.buttonDeleteFromMaterials.UseVisualStyleBackColor = true;
-            this.buttonDeleteFromMaterials.Click += new System.EventHandler(this.buttonDeleteFromMaterials_Click);
-            // 
             // buttonPrint
             // 
             this.buttonPrint.Image = global::SMSystem.Properties.Resources.print_32px;
             this.buttonPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonPrint.Location = new System.Drawing.Point(55, 11);
+            this.buttonPrint.Location = new System.Drawing.Point(98, 11);
             this.buttonPrint.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(120, 54);
@@ -276,7 +276,7 @@ namespace SMSystem.Gui.IncomeGui
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button buttonRefresh;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button buttonDeleteFromMaterials;
+        private System.Windows.Forms.Button buttonDamge;
+        private System.Windows.Forms.Button buttonOutConsceince;
     }
 }

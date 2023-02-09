@@ -33,6 +33,13 @@ namespace SMSystem.Gui.CustomersGui
         }
 
         #region Events
+        private void buttonShowConsciencesRecords_Click(object sender, EventArgs e)
+        {
+            RowId = Convert.ToInt32(dataGridView.CurrentRow.Cells[0].Value);
+            var CustomerName = Convert.ToString(dataGridView.CurrentRow.Cells[1].Value);
+            CustomerConscienceCardUserForm customerConscienceCardUserForm = new CustomerConscienceCardUserForm(RowId, CustomerName);
+            customerConscienceCardUserForm.Show();
+        }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             CustomerAddForm customerAdd = new CustomerAddForm(0, this);
@@ -52,7 +59,7 @@ namespace SMSystem.Gui.CustomersGui
             }
         }
 
-        private async void buttonDelete_Click(object sender, EventArgs e)
+        private  void buttonDelete_Click(object sender, EventArgs e)
         {
             try
             {
@@ -63,14 +70,14 @@ namespace SMSystem.Gui.CustomersGui
                     if (result == true)
                     {
                         loading.Show();
-                        if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                        if (_dataHelper.IsDbConnect())
                         {
                             if (IdList.Count > 0)
                             {
                                 for (int i = 0; i < IdList.Count; i++)
                                 {
                                     RowId = IdList[i];
-                                    await Task.Run(() => _dataHelper.Delete(RowId));
+                                    _dataHelper.Delete(RowId);
                                 }
                                 LoadData();
                                 MessageCollection.ShowDeletNotification();
@@ -133,7 +140,7 @@ namespace SMSystem.Gui.CustomersGui
         {
             loading.Show();
             // Check if connection is available
-            if (await Task.Run(() => _dataHelper.IsDbConnect()))
+            if (_dataHelper.IsDbConnect())
             {
                 // Loading Data
                 dataGridView.DataSource = await Task.Run(() => _dataHelper.GetData());
@@ -161,7 +168,7 @@ namespace SMSystem.Gui.CustomersGui
                 loading.Show();
                 searchItem = textBoxSearch.Text;
                 // Check if connection is available
-                if (await Task.Run(() => _dataHelper.IsDbConnect()))
+                if (_dataHelper.IsDbConnect())
                 {
                     // Loading Data
                     dataGridView.DataSource = await Task.Run(() => _dataHelper.Search(searchItem));
@@ -223,5 +230,6 @@ namespace SMSystem.Gui.CustomersGui
         }
         #endregion
 
+      
     }
 }

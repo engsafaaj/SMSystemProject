@@ -18,12 +18,20 @@ namespace SMSystem.Code
                     Resources.ServerConnectionText, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
         }
+
         public static void ShowEmptyDataMessage()
         {
             MessageBox.Show(Resources.EmptyGridViewCaption,
                       Resources.EmptyGridViewText, MessageBoxButtons.OK,
                       MessageBoxIcon.Information);
         }
+        public static void ShowQuantityMessage()
+        {
+            MessageBox.Show(Resources.QuantityMaterialCaption,
+                      Resources.QuantityMaterialText, MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+        }
+
         public static bool DeleteActtion()
         {
             var result = MessageBox.Show(Resources.DeleteActionCaption,
@@ -39,24 +47,111 @@ namespace SMSystem.Code
             }
             return dialogResult;
         }
+        public static bool OnConscinceAction()
+        {
+            var result = MessageBox.Show(Resources.OutOfConscinceCaption,
+                        Resources.OutOfConscinceText, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dialogResult = true;
+            }
+            else
+            {
+                dialogResult = false;
+            }
+            return dialogResult;
+        }
+        public static bool OnDamgeAction()
+        {
+            var result = MessageBox.Show(Resources.OnDamgeCaption,
+                        Resources.OnDamgeText, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dialogResult = true;
+            }
+            else
+            {
+                dialogResult = false;
+            }
+            return dialogResult;
+        }
+        public static bool DeleteActtionForOutCome()
+        {
+            var result = MessageBox.Show(Resources.DeletOutComeCaption,
+                        Resources.DeleteOutComeText, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dialogResult = true;
+            }
+            else
+            {
+                dialogResult = false;
+            }
+            return dialogResult;
+        }
+
+        public static bool DeleteCompletedData()
+        {
+            var result = MessageBox.Show(Resources.ShowDeleteMaterialCaption,
+                        Resources.DeleteActionText, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dialogResult = true;
+            }
+            else
+            {
+                dialogResult = false;
+            }
+            return dialogResult;
+        }
+
+        public static bool DamageAction()
+        {
+            var result = MessageBox.Show(Resources.ShowMoveDamgeCaption,
+                        Resources.ShowMoveDamgeText, MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dialogResult = true;
+            }
+            else
+            {
+                dialogResult = false;
+            }
+            return dialogResult;
+        }
+
         public static void ShowEmptyFields()
         {
             MessageBox.Show(Resources.FiledsEmptyCaption,
                     Resources.FiledsEmptyText, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
         }
+        public static void ShowIsSavedData()
+        {
+            MessageBox.Show(Resources.SavedDataCaption,
+                    Resources.SavedDataText, MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+        }
+
         public static void ShowSlectRowsNotification()
         {
             MessageBox.Show(Resources.ShowRowsCaption,
                     Resources.ShowRowText, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
         }
+
         public static void ShowInvalidValue()
         {
             MessageBox.Show(Resources.InvalidInputCaption,
                     Resources.InvalidIputText, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
         }
+
         public static void ShowDuplicateData()
         {
             MessageBox.Show(Resources.DuplicateDataCaption,
@@ -72,11 +167,13 @@ namespace SMSystem.Code
             notifictionUser = new NotifictionUser(Resources.AddNotificationText);
             notifictionUser.Show();
         }
+
         public static void ShowEditNotification()
         {
             notifictionUser = new NotifictionUser(Resources.EditNotificationText);
             notifictionUser.Show();
         }
+
         public static void ShowDeletNotification()
         {
             notifictionUser = new NotifictionUser(Resources.DeleteNotificationText);

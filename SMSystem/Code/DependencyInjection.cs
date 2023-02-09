@@ -14,6 +14,12 @@ namespace SMSystem.Code
             ContainerConfig.Register("Customer", new CustomersEntity());
             ContainerConfig.Register("Supplier", new SuppliersEntity());
             ContainerConfig.Register("Income", new IncomeEntity());
+            ContainerConfig.Register("OutCome", new OutComeEntity());
+            ContainerConfig.Register("OutComeMaterail", new OutComeMaterailMaterialsEntity());
+            ContainerConfig.Register("Damage", new DamageEntity());
+            ContainerConfig.Register("User", new UserEntity());
+            ContainerConfig.Register("ConscienceCard", new ConscienceCardEntity());
+            ContainerConfig.Register("OutOfConscinesMaterials", new OutOfConsinceMaterialEntity());
         }
     }
 }

@@ -15,5 +15,8 @@ namespace SMSystem.Core
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
+
+        // Navigation
+        public virtual List<ConscienceCard> conscienceCards { get; set; }
     }
 }

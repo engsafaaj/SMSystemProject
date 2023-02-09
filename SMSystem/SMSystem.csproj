@@ -4,10 +4,26 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>2022-09-08_123734.ico</ApplicationIcon>
+    <Win32Resource />
+    <Authors>Safaa Jassim</Authors>
+    <Company>Tecno U</Company>
+    <Product>مخزن</Product>
+    <Description>برنامج مخزن اداة بسيطة لادارة المخازن 
+تم تطوير البرنامج اعتمادا على اليه العمل ضمن المؤسسات الحكومية العراقية
+تم التطوير من قبل المهندس صفاء جاسم
+هذه النسخة هي متاحة للتطوير على قناة تكنو يو</Description>
+    <Copyright>Tecno U</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.96.0" />
+    <PackageReference Include="FastMember" Version="1.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -19,12 +35,32 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Gui\CustomersGui\AddCustomerConscienceCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Gui\CustomersGui\CustomerConscienceCardUserForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Gui\OutOfConscince\OutOfConscenseAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Gui\OutOfConscince\OutOfConscenseUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Gui\DamageGui\DamageUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Gui\DamageGui\DamageAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Gui\IncomeGui\IncomeAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Gui\IncomeGui\IncomeUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Gui\OutComeGui\OutComeAddForm.cs" />
+    <Compile Update="Gui\OutComeGui\OutComeUserControl.cs" />
     <Compile Update="Gui\SuppliersGui\SupplierAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -42,6 +78,15 @@
     </Compile>
     <Compile Update="Gui\CustomersGui\CustomerAddForm.cs" />
     <Compile Update="Gui\CustomersGui\CustomerUserControl.cs" />
+    <Compile Update="Gui\UserGui\UserLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Gui\UserGui\UserAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Gui\UserGui\UserUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

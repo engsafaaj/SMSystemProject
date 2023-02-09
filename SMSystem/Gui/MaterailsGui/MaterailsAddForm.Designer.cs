@@ -49,21 +49,21 @@ namespace SMSystem.Gui.MaterailsGui
             this.comboBoxUnit = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxTotalPrice = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBoxOutCome = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBoxIncome = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.textBoxQuantity = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxIncome = new System.Windows.Forms.TextBox();
+            this.textBoxOutCome = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.flowLayoutPanelNavBar.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -279,10 +279,9 @@ namespace SMSystem.Gui.MaterailsGui
             // 
             // comboBoxUnit
             // 
+            this.comboBoxUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.comboBoxUnit.FormattingEnabled = true;
-            this.comboBoxUnit.Items.AddRange(new object[] {
-            "كرتون",
-            "حبه"});
             this.comboBoxUnit.Location = new System.Drawing.Point(16, 56);
             this.comboBoxUnit.Name = "comboBoxUnit";
             this.comboBoxUnit.Size = new System.Drawing.Size(331, 45);
@@ -309,28 +308,6 @@ namespace SMSystem.Gui.MaterailsGui
             this.label18.Size = new System.Drawing.Size(25, 37);
             this.label18.TabIndex = 6;
             this.label18.Text = "*";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(419, 266);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(25, 37);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "*";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(419, 196);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 37);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "*";
             // 
             // label9
             // 
@@ -384,16 +361,6 @@ namespace SMSystem.Gui.MaterailsGui
             this.label16.TabIndex = 2;
             this.label16.Text = "اجمالي السعر:";
             // 
-            // textBoxOutCome
-            // 
-            this.textBoxOutCome.Location = new System.Drawing.Point(16, 266);
-            this.textBoxOutCome.Name = "textBoxOutCome";
-            this.textBoxOutCome.Size = new System.Drawing.Size(332, 45);
-            this.textBoxOutCome.TabIndex = 4;
-            this.textBoxOutCome.Text = "0";
-            this.textBoxOutCome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxOutCome.TextChanged += new System.EventHandler(this.textBoxOutCome_TextChanged);
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -403,36 +370,6 @@ namespace SMSystem.Gui.MaterailsGui
             this.label15.Size = new System.Drawing.Size(69, 37);
             this.label15.TabIndex = 2;
             this.label15.Text = "السعر:";
-            // 
-            // textBoxIncome
-            // 
-            this.textBoxIncome.Location = new System.Drawing.Point(16, 196);
-            this.textBoxIncome.Name = "textBoxIncome";
-            this.textBoxIncome.Size = new System.Drawing.Size(332, 45);
-            this.textBoxIncome.TabIndex = 4;
-            this.textBoxIncome.Text = "0";
-            this.textBoxIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxIncome.TextChanged += new System.EventHandler(this.textBoxIncome_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(454, 272);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 37);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "إخراج:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(450, 199);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 37);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "إدخال:";
             // 
             // textBoxQuantity
             // 
@@ -463,6 +400,70 @@ namespace SMSystem.Gui.MaterailsGui
             this.label14.Size = new System.Drawing.Size(76, 37);
             this.label14.TabIndex = 2;
             this.label14.Text = "الوحدة:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(450, 199);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 37);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "إدخال:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(454, 272);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(61, 37);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "إخراج:";
+            // 
+            // textBoxIncome
+            // 
+            this.textBoxIncome.Enabled = false;
+            this.textBoxIncome.Location = new System.Drawing.Point(16, 196);
+            this.textBoxIncome.Name = "textBoxIncome";
+            this.textBoxIncome.Size = new System.Drawing.Size(332, 45);
+            this.textBoxIncome.TabIndex = 4;
+            this.textBoxIncome.Text = "0";
+            this.textBoxIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxIncome.TextChanged += new System.EventHandler(this.textBoxIncome_TextChanged);
+            // 
+            // textBoxOutCome
+            // 
+            this.textBoxOutCome.Enabled = false;
+            this.textBoxOutCome.Location = new System.Drawing.Point(16, 266);
+            this.textBoxOutCome.Name = "textBoxOutCome";
+            this.textBoxOutCome.Size = new System.Drawing.Size(332, 45);
+            this.textBoxOutCome.TabIndex = 4;
+            this.textBoxOutCome.Text = "0";
+            this.textBoxOutCome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxOutCome.TextChanged += new System.EventHandler(this.textBoxOutCome_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(419, 196);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 37);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "*";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(419, 266);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(25, 37);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "*";
             // 
             // MaterailsAddForm
             // 
@@ -512,24 +513,24 @@ namespace SMSystem.Gui.MaterailsGui
         private System.Windows.Forms.ComboBox comboBoxStore;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBoxUnit;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBoxIncome;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBoxQuantity;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBoxTotalPrice;
         private System.Windows.Forms.TextBox textBoxPrice;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBoxOutCome;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.LinkLabel linkLabelCodeGenerator;
         private System.Windows.Forms.LinkLabel linkLabelAddStore;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxOutCome;
+        private System.Windows.Forms.TextBox textBoxIncome;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

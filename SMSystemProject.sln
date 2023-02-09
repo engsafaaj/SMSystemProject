@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMSystem.Core", "SMSystem.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMSystem.Data", "SMSystem.Data\SMSystem.Data.csproj", "{351B3372-2FD0-49AB-99A7-6C62D2848978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSystem.Tests", "SMSystem.Tests\SMSystem.Tests.csproj", "{BC88074F-3F9C-4571-9580-882EED555DDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMSystem.Tests", "SMSystem.Tests\SMSystem.Tests.csproj", "{BC88074F-3F9C-4571-9580-882EED555DDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
