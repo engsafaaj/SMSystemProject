@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SQLServerConString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=.\SQLEXPRESS;DataBase=DBSMSystem;Integrated Security=True</Value>
+      <Value Profile="(Default)">Server=.\SQLEXPRESS;DataBase=DataBaseSMSystem;Integrated Security=True</Value>
     </Setting>
     <Setting Name="NotificationTime" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3000</Value>

@@ -13,9 +13,9 @@ namespace SMSystem.Data.EF
         //Methods -- Override
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //var DevelopmentConString = @"Server=.\SQLEXPRESS;DataBase=DBSMSystem;Integrated Security=True";
+           // var DevelopmentConString = @"Server=.\SQLEXPRESS;DataBase=DataBaseSMSystem;Integrated Security=True";
             optionsBuilder.UseSqlServer(ConfigDictionary.keyValuePairs["ConString"]);
-           // optionsBuilder.UseSqlServer(DevelopmentConString);
+           //optionsBuilder.UseSqlServer(DevelopmentConString);
         }
         // Tables
         public DbSet<Stores> Stores { get; set; }

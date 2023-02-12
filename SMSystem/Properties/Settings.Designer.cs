@@ -25,7 +25,7 @@ namespace SMSystem.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=.\\SQLEXPRESS;DataBase=DBSMSystem;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=.\\SQLEXPRESS;DataBase=DataBaseSMSystem;Integrated Security=True")]
         public string SQLServerConString {
             get {
                 return ((string)(this["SQLServerConString"]));

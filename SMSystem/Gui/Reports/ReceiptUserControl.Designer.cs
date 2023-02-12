@@ -196,8 +196,7 @@ namespace SMSystem.Gui.Reports
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label11.Size = new System.Drawing.Size(712, 45);
             this.label11.TabIndex = 13;
-            this.label11.Text = "تم توليد هذه التقرير من خلال برنامج مخزن - جامعة المثنى / كلية الهندسة \r\nDesign b" +
-    "y. Safaa J. Kaheed";
+            this.label11.Text = "تم توليد هذه التقرير من خلال برنامج مخزن \r\nDesign by. Safaa J. Kaheed";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
@@ -273,7 +272,7 @@ namespace SMSystem.Gui.Reports
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.35883F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.64117F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 272F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 273F));
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.LabelOutComeNo, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
@@ -314,7 +313,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.LabelOutComeNo.AutoSize = true;
             this.LabelOutComeNo.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelOutComeNo.Location = new System.Drawing.Point(533, 10);
+            this.LabelOutComeNo.Location = new System.Drawing.Point(534, 10);
             this.LabelOutComeNo.Name = "LabelOutComeNo";
             this.LabelOutComeNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LabelOutComeNo.Size = new System.Drawing.Size(72, 37);
@@ -336,7 +335,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.LabelOutComeDate.AutoSize = true;
             this.LabelOutComeDate.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelOutComeDate.Location = new System.Drawing.Point(495, 69);
+            this.LabelOutComeDate.Location = new System.Drawing.Point(496, 69);
             this.LabelOutComeDate.Name = "LabelOutComeDate";
             this.LabelOutComeDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LabelOutComeDate.Size = new System.Drawing.Size(110, 37);
@@ -358,7 +357,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.LabelCustomer.AutoSize = true;
             this.LabelCustomer.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelCustomer.Location = new System.Drawing.Point(470, 119);
+            this.LabelCustomer.Location = new System.Drawing.Point(471, 119);
             this.LabelCustomer.Name = "LabelCustomer";
             this.LabelCustomer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LabelCustomer.Size = new System.Drawing.Size(135, 37);
@@ -380,7 +379,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.LabelTotalPrice.AutoSize = true;
             this.LabelTotalPrice.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LabelTotalPrice.Location = new System.Drawing.Point(461, 169);
+            this.LabelTotalPrice.Location = new System.Drawing.Point(462, 169);
             this.LabelTotalPrice.Name = "LabelTotalPrice";
             this.LabelTotalPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LabelTotalPrice.Size = new System.Drawing.Size(144, 37);
@@ -391,7 +390,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(290, 119);
+            this.label10.Location = new System.Drawing.Point(291, 119);
             this.label10.Name = "label10";
             this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label10.Size = new System.Drawing.Size(91, 37);
@@ -402,7 +401,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(45, 122);
+            this.textBox1.Location = new System.Drawing.Point(46, 122);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(235, 32);
             this.textBox1.TabIndex = 12;
@@ -412,7 +411,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(298, 69);
+            this.label12.Location = new System.Drawing.Point(299, 69);
             this.label12.Name = "label12";
             this.label12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label12.Size = new System.Drawing.Size(83, 37);
@@ -423,7 +422,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(311, 169);
+            this.label4.Location = new System.Drawing.Point(312, 169);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label4.Size = new System.Drawing.Size(70, 37);
@@ -434,7 +433,7 @@ namespace SMSystem.Gui.Reports
             // 
             this.TextBoxReciveDate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxReciveDate.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TextBoxReciveDate.Location = new System.Drawing.Point(45, 172);
+            this.TextBoxReciveDate.Location = new System.Drawing.Point(46, 172);
             this.TextBoxReciveDate.Name = "TextBoxReciveDate";
             this.TextBoxReciveDate.Size = new System.Drawing.Size(235, 32);
             this.TextBoxReciveDate.TabIndex = 12;
